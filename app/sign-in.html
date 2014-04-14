@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="Marko Marolt, Lenč Skumavec and Boštjan Novak">
+        <link rel="shortcut icon" href="img/favicon.ico">
+
+        <title>Sign in</title>
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+        <!-- Custom styles for this template -->
+        <link href="css/sign-in.css" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <div class="container form-signin">
+
+          <form id="form-sign-in" role="form" method="POST">
+              <h2 class="form-signin-heading">Please sign in</h2>
+              <div class="form-group has-feedback">
+                  <label class="control-label" for="email">E-mail address</label>
+                  <input type="email" id="email" class="form-control" name="email" autofocus>
+                  <span class="form-control-feedback glyphicon" style="top:30px"></span>
+              </div>
+              <div class="form-group has-feedback">
+                  <label class="control-label" for="password">Password</label>
+                  <input type="password" id="password" class="form-control" name="password">
+                  <span class="form-control-feedback glyphicon" style="top:30px"></span>
+              </div>
+              <label class="checkbox">
+                  <input type="checkbox" value="remember-me"> Remember me
+              </label>
+              <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+          </form>
+
+          <br>
+          <hr class="" style="border-color: gray">
+          New to SportScience?
+          <br>
+          <a href="register.html">Register</a>
+          <br><br>
+          Forgot your password?
+          <br>
+          <a href="#resetpassword">Reset password</a>
+
+        </div><!-- /container -->
+
+
+        <!-- Bootstrap core JavaScript -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"></script>
+        <script src="js/validate-signin.js"></script>
+    </body>
+
+</html>
