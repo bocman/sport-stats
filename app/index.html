@@ -1,12 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="Marko Marolt, Lenč Skumavec and Boštjan Novak">
-        <link rel="shortcut icon" href="/assets/img/favicon.ico">
+        <link rel="shortcut icon" href="img/favicon.ico">
 
         <title>SportScience</title>
 
@@ -14,16 +14,13 @@
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
         <!-- Custom styles for this template -->
-        <link rel="stylesheet" href="css/assets/css/index.css">
-
-    
-
+        <link rel="stylesheet" href="css/index.css"> 
     </head>
-<body>
 
-   <div class="navbar-wrapper">
+    <body>
+
+        <div class="navbar-wrapper">
             <div class="container">
-
                 <div class="navbar navbar-inverse navbar-static-top" role="navigation">
                     <div class="container">
                         <div class="navbar-header">
@@ -37,29 +34,17 @@
                         </div>
                         <div class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <!--<li class="active"><a href="#">Home</a></li> -->
                                 <li><a href="#about">About</a></li>
                                 <li><a href="#contact">Contact</a></li>
-                                <!--
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                      <li><a href="#">Action</a></li>
-                                      <li><a href="#">Another action</a></li>
-                                      <li><a href="#">Something else here</a></li>
-                                      <li class="divider"></li>
-                                      <li class="dropdown-header">Nav header</li>
-                                      <li><a href="#">Separated link</a></li>
-                                      <li><a href="#">One more separated link</a></li>
-                                    </ul>
-                                </li>
-                            -->
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="signin-margin-index"><a href="sign-in.html">Sign in</a></li>
                             </ul>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </div><!-- /.navbar-container -->
+                </div><!-- /.navbar -->
+            </div><!-- /.wrapper-container -->
+        </div><!-- /.navbar-wrapper -->
 
 
         <!-- Carousel-->
@@ -75,9 +60,10 @@
                     <img data-src="holder.js/900x500/auto/#777:#7a7a7a/text:First slide" alt="First slide">
                     <div class="container">
                         <div class="carousel-caption">
-                            <h1>Example headline.</h1>
-                            <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+                            <h1>Welcome to SportScience!</h1>
+                            <p>Dig deep into the statistics behind sport with the use of our tools. Lorem more text oh yeah text moar give me moar Lorem more text oh yeah text moar give me moar</p>
+
+                            <p><a class="btn btn-lg btn-primary" href="register.html" role="button">Register today</a></p>
                         </div>
                     </div>
                 </div>
@@ -108,60 +94,62 @@
         </div><!-- /.carousel -->
 
 
-
-        <!-- Marketing messaging and featurettes -->
         <!-- Wrap the rest of the page in another container to center all the content. -->
-
         <div class="container marketing">
             <!-- Three columns of text below the carousel -->
             <div class="row">
+              <a href="f1.html">
                 <div class="col-lg-4">
-                    <img src="css/assets/img/logos/f1_logo.jpg" class="img-circle" alt="Generic placeholder image">
-                    <h2>Formula 1</h2>
-                    <p>Formula 1 results, constructors championship standings, drivers championship standings, fastest laps and more ...</p>
+                    <img src="img/logos/f1_logo.jpg" class="img-circle sport-pic" alt="F1 logo">
+                    <h3>Formula 1</h3>
+                    <p>Results, constructors championship standings, drivers championship standings, fastest laps and more ...</p>
                     <p><a class="btn btn-default" href="f1.html" role="button">View details &raquo;</a></p>
                 </div><!-- /.col-lg-4 -->
+              </a>
+              <a href="nhl.html">
                 <div class="col-lg-4">
-                    <img class="img-circle" src="css/assets/img/logos/nhl_logo.jpg" alt="Generic placeholder image">
-                    <h2>National Hockey League</h2>
+                    <img src="img/logos/nhl_logo.jpg" class="img-circle sport-pic" alt="NHL logo">
+                    <h3>National Hockey League</h3>
                     <p>League scorers, standings, stats, draft history, draft rankings, teams and more ...</p>
                     <p><a class="btn btn-default" href="nhl.html" role="button">View details &raquo;</a></p>
                 </div><!-- /.col-lg-4 -->
+              </a>
+              <a href="nba.html">
                 <div class="col-lg-4">
-                    <img class="img-circle" src="css/assets/img/logos/nba_logo.jpg" width="140" height="140" alt="Generic placeholder image">
-                    <h3>National Basketball Association</h2>
+                    <img src="img/logos/nba_logo.jpg" class="img-circle sport-pic" width="140" height="140" alt="NBA logo">
+                    <h3>National Basketball Association</h3>
                     <p>League scorers, standings, stats, draft history, draft rankings, teams and more ...</p>
                     <p><a class="btn btn-default" href="nba.html" role="button">View details &raquo;</a></p>
                 </div><!-- /.col-lg-4 -->
+              </a>
             </div><!-- /.row -->    
 
+            <hr class="" style="border-color: gray">
 
             <!-- FOOTER -->
             <footer>
                 <p class="pull-right"><a href="#">Back to top</a></p>
-                <p>&copy; 2014 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+                <p>&copy; 2014 sportScience &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
             </footer>
 
         </div><!-- /.container -->
 
 
-
-  
-
-  <!-- Bootstrap core JavaScript -->
+        <!-- Bootstrap core JavaScript -->
         <!-- Placed at the end of the document so the pages load faster -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-  <script src="assets/js/docs.min.js"></script>
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
-  <script src="../bower_components/angular/angular.js"></script>
-  <script src="../bower_components/angular-route/angular-route.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/services.js"></script>
-  <script src="js/controllers.js"></script>
-  <script src="js/filters.js"></script>
-  <script src="js/directives.js"></script>
-</body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="js/docs.min.js"></script>
+        <script src="js/index.js"></script>
+        <!-- In production use:
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+        -->
+        <script src="../bower_components/angular/angular.js"></script>
+        <script src="../bower_components/angular-route/angular-route.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/services.js"></script>
+        <script src="js/controllers.js"></script>
+        <script src="js/filters.js"></script>
+        <script src="js/directives.js"></script>
+    </body>
 </html>
