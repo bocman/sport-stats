@@ -8,7 +8,4 @@ angular.module('stats', [
   'stats.services',
   'stats.directives',
   'stats.controllers'
-]).config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/drivers', {templateUrl: 'partials/driversStandings.html', controller: 'driversStandingsController'});
-  $routeProvider.otherwise({redirectTo: '/f1.html'});
-}]);
+]);
