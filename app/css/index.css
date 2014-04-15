@@ -2,7 +2,7 @@
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
 
-html, body {
+body {
   padding-bottom: 15px;
   color: #5a5a5a;
 }

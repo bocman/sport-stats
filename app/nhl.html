@@ -18,58 +18,23 @@
     </head>
 
     <body>
-
         <div class="navbar-wrapper">
             <div class="container">
-                <div class="navbar navbar-inverse navbar-static-top" role="navigation">
-                    <div class="container">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                              <span class="sr-only">Toggle navigation</span>
-                              <span class="icon-bar"></span>
-                              <span class="icon-bar"></span>
-                              <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" href="index.html">SportScience</a>
-                        </div>
-                        <div class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">
-                                <li><a href="#teams">Teams</a></li>
-                                <li><a href="#players">Players</a></li>
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="signin-margin"><a href="sign-in.html">Sign in</a></li>
-                            </ul>
-
-                            <form class="navbar-form navbar-right" role="search">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                </div>
-                                <button type="submit" class="btn btn-default">
-                                     <span class="glyphicon glyphicon-search"></span>
-                                </button>
-                            </form>
-                        </div>
-                    </div><!-- /.navbar-container -->
-                </div><!-- /.navbar -->
+                    <div  ng-view id="data"></div>
             </div><!-- /.wrapper-container -->
         </div><!-- /.navbar-wrapper -->
-       
-        <div id="data">
-            
-        </div>
  
 
         <!-- Bootstrap core JavaScript -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-        <script src="assets/js/docs.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="js/docs.min.js"></script>
         <!-- In production use:
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
         -->
-        <script src="../bower_components/angular/angular.js"></script>
-        <script src="../bower_components/angular-route/angular-route.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+        <script src="js/angular-route.js"></script>
         <script src="js/app.js"></script>
         <script src="js/services.js"></script>
         <script src="js/controllers.js"></script>
