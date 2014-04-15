@@ -2,7 +2,7 @@
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
 
-body {
+html, body {
   padding-bottom: 15px;
   color: #5a5a5a;
 }
@@ -146,7 +146,7 @@ body {
   }
 }
 
-
+/* Sign in navbar buttom */
 .signin-margin {
   margin-right: 20px;
 }
@@ -154,6 +154,7 @@ body {
   margin-right: 30px;
 }
 
+/* Sports */
 .sport-pic {
   position: relative;
 }
@@ -161,4 +162,15 @@ body {
 div.row a {
   color: inherit;
   text-decoration: none;
+}
+
+
+/* Contact us */
+.contact-us {
+  padding-top: 70px;
+}
+
+div.col-xs-2 > img {
+  margin-top: 15px;
+  position: relative;
 }
