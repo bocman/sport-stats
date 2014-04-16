@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="Marko Marolt, Lenč Skumavec and Boštjan Novak">
+        <link rel="shortcut icon" href="img/favicon.ico">
+
+        <title>Register</title>
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+        <!-- Custom styles for this template -->
+        <link rel="stylesheet" href="css/register.css" >
+    </head>
+
+    <body>
+
+        <div class="container">
+
+            <form id="form-register" class="form-signin" role="form" method="POST">
+                <h2 class="form-signin-heading">Please register</h2>
+                <div class="form-group has-feedback">
+                    <label class="control-label" for="username">Username</label>
+                    <input type="text" id="username" class="form-control" name="username" autofocus>
+                    <span class="form-control-feedback glyphicon" style="top:30px"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label class="control-label" for="email">E-mail</label>
+                    <input type="email" id="email" class="form-control" name="email">
+                    <span class="form-control-feedback glyphicon" style="top:30px"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label class="control-label" for="password">Password</label>
+                    <input type="password" id="password" class="form-control" name="password">
+                    <span class="form-control-feedback glyphicon" style="top:30px"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label class="control-label" for="passwordconfirm">Confirm password</label>
+                    <input type="password" id="passwordconfirm" class="form-control" name="passwordconfirm">
+                    <span class="form-control-feedback glyphicon" style="top:30px"></span>
+                </div>
+               
+                <button class="btn btn-lg btn-primary btn-block btn-margin" type="submit">Register</button>
+            </form>
+
+        </div> <!-- /container -->
+
+
+      <!-- Bootstrap core JavaScript -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+      <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"></script>
+      <script src="js/scripts/validate-register.js"></script>
+    </body>
+</html>
