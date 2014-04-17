@@ -62,7 +62,6 @@
                                   <td>290 km</td>
                                 </tr>
                             </table>
-
                         </div>
 
                         <div class="col-md-4">
@@ -87,8 +86,12 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="result in qualyResults">
-                        <td style="vertical-align:middle">{{$index + 1}}. </td>
-                        <td style="vertical-align:middle"><img src="img/flags/flags/32/{{result.Driver.nationality}}.png" alt="{{result.Driver.nationality}}">&nbsp;<a href="#/drivers/{{result.Driver.driverId}}">{{result.Driver.givenName}}&nbsp;{{result.Driver.familyName}}</a></td>
+                        <td style="vertical-align:middle">{{$index + 1}}.</td>
+                        <td style="vertical-align:middle">
+                            <a href="#/drivers/{{result.Driver.driverId}}" style="margin-right: 8px">
+                                <img src="img/flags/flags/32/{{result.Driver.nationality}}.png" alt="{{result.Driver.nationality}}" style="margin-right: 8px">{{result.Driver.givenName}}&nbsp;{{result.Driver.familyName}}
+                            </a>
+                        </td>
                         <td style="vertical-align:middle">{{result.Constructor.name}}</td>
                         <td style="vertical-align:middle">{{result.Q1}}</td>
                         <td style="vertical-align:middle">{{result.Q2}}</td>
@@ -114,14 +117,18 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="result in raceResults">
-                            <td style="vertical-align:middle">{{$index + 1}}. </td>
-                            <td style="vertical-align:middle"><img src="img/flags/flags/32/{{result.Driver.nationality}}.png" alt="{{result.Driver.nationality}}">&nbsp;<a href="#/drivers/{{result.Driver.driverId}}">{{result.Driver.givenName}}&nbsp;{{result.Driver.familyName}}</a></td>
+                            <td style="vertical-align:middle">{{$index + 1}}.</td>
+                            <td style="vertical-align:middle">
+                                <a href="#/drivers/{{result.Driver.driverId}}">
+                                    <img src="img/flags/flags/32/{{result.Driver.nationality}}.png" alt="{{result.Driver.nationality}}" style="margin-right: 8px">{{result.Driver.givenName}}&nbsp;{{result.Driver.familyName}}
+                                </a>
+                            </td>
                             <td style="vertical-align:middle">{{result.Constructor.name}}</td>
                             <td style="vertical-align:middle">{{result.Time.time}}</td>
                             <td style="vertical-align:middle">{{result.FastestLap.Time.time}}</td>
                             <td style="vertical-align:middle">{{result.FastestLap.AverageSpeed.speed}}</td>
                             <td style="vertical-align:middle">{{result.status}}</td>
-                            <td style="vertical-align:middle"> {{result.points}}</td>
+                            <td style="vertical-align:middle">{{result.points}}</td>
                         </tr>
                     </tbody>
                 </table>
