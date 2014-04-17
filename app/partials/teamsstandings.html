@@ -49,11 +49,21 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="team in teamsList  | filter: searchFilter">
-                        <td style="vertical-align:middle">{{$index + 1}}. </td>
-                        <td style="vertical-align:middle"><img src="img/flags/flags/32/{{team.Constructor.nationality}}.png" alt="{{team.Constructor.nationality}}">&nbsp;&nbsp;{{team.Constructor.name}}</td>
-                        <td style="vertical-align:middle"><a href="{{team.Constructor.url}}" target="_blank"><span class="glyphicon glyphicon-link"></span> Details</a></td>
-                        <td style="vertical-align:middle"><span class="badge">{{team.wins}}</span></td>
-                        <td style="vertical-align:middle"><span class="badge">{{team.points}}</span></td>
+                        <td style="vertical-align:middle">{{$index + 1}}.</td>
+                        <td style="vertical-align:middle">
+                            <img src="img/flags/flags/32/{{team.Constructor.nationality}}.png" alt="{{team.Constructor.nationality}}" style="margin-right: 8px">{{team.Constructor.name}}
+                        </td>
+                        <td style="vertical-align:middle">
+                            <a href="{{team.Constructor.url}}" target="_blank">
+                                <span class="glyphicon glyphicon-link" style="margin-right: 3px"></span>Details
+                            </a>
+                        </td>
+                        <td style="vertical-align:middle">
+                            <span class="badge">{{team.wins}}</span>
+                        </td>
+                        <td style="vertical-align:middle">
+                            <span class="badge">{{team.points}}</span>
+                        </td>
                     </tr>
                 </tbody>
             </table>

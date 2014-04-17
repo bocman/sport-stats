@@ -166,11 +166,15 @@ div.row a {
 
 
 /* Contact us */
-.contact-us {
-  padding-top: 70px;
+.container-padding {
+  padding-top: 90px;
 }
 
 div.col-xs-2 > img {
   margin-top: 15px;
   position: relative;
+}
+
+.marginos {
+  margin-left: 20px;
 }

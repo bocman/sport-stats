@@ -73,10 +73,18 @@
             <tbody>
                 <tr ng-repeat="race in races">
                     <td style="vertical-align:middle">{{race.round}}</td>
-                    <td style="vertical-align:middle"><img  src="img/flags/races/flags/32/{{race.Circuit.Location.country}}.png"/>&nbsp;<a href="#/races/{{race.round}}">{{race.raceName}}</a></td>
+                    <td style="vertical-align:middle">
+                        <a href="#/races/{{race.round}}">
+                            <img src="img/flags/races/flags/32/{{race.Circuit.Location.country}}.png" style="margin-right: 8px">{{race.raceName}}
+                        </a>
+                    </td>
                     <td style="vertical-align:middle">{{race.Results[0].Constructor.name}}</td>
-                    <td style="vertical-align:middle"><span class="badge">{{race.Results[0].grid}}</span></td>
-                    <td style="vertical-align:middle"><span class="badge">{{race.Results[0].position}}</span></td>
+                    <td style="vertical-align:middle">
+                        <span class="badge">{{race.Results[0].grid}}</span>
+                    </td>
+                    <td style="vertical-align:middle">
+                        <span class="badge">{{race.Results[0].position}}</span>
+                    </td>
                 </tr>
             </tbody>
         </table>

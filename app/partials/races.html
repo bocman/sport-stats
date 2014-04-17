@@ -49,11 +49,23 @@
               </thead>
               <tbody>
                   <tr ng-repeat="race in racesList | filter: searchFilter">
-                      <td style="vertical-align:middle">{{$index + 1}} </td>
-                      <td style="vertical-align:middle"><a href="#/races/{{race.round}}"><img src="img/flags/races/flags/32/{{race.Circuit.Location.country}}.png" alt="{{race.Circuit.Location.country}}">&nbsp;&nbsp;{{race.raceName}}</a></td>
-                      <td style="vertical-align:middle"><a href="{{race.url}}" target="_blank"><span class="glyphicon glyphicon-link"></span> {{race.Circuit.circuitName}}</a></td>
+                      <td style="vertical-align:middle">{{$index + 1}}</td>
+                      <td style="vertical-align:middle">
+                        <a href="#/races/{{race.round}}">
+                          <img src="img/flags/races/flags/32/{{race.Circuit.Location.country}}.png" alt="{{race.Circuit.Location.country}}" style="margin-right: 8px">{{race.raceName}}
+                        </a>
+                      </td>
+                      <td style="vertical-align:middle">
+                        <a href="{{race.url}}" target="_blank">
+                          <span class="glyphicon glyphicon-link" style="margin-right: 3px"></span>{{race.Circuit.circuitName}}
+                        </a>
+                      </td>
                       <td style="vertical-align:middle">{{race.date}}</td>
-                      <td style="vertical-align:middle"><img src="img/flags/flags/32/{{race.Results[0].Driver.nationality}}.png" alt=""><a href="#/drivers/{{race.Results[0].Driver.driverId}}">&nbsp;&nbsp;{{race.Results[0].Driver.givenName}}&nbsp;{{race.Results[0].Driver.familyName}}</a></td>
+                      <td style="vertical-align:middle">
+                        <a href="#/drivers/{{race.Results[0].Driver.driverId}}">
+                          <img src="img/flags/flags/32/{{race.Results[0].Driver.nationality}}.png" alt="" style="margin-right: 8px">{{race.Results[0].Driver.givenName}}&nbsp;{{race.Results[0].Driver.familyName}}
+                        </a>
+                      </td>
                   </tr>
               </tbody>
           </table>

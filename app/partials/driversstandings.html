@@ -48,18 +48,20 @@
               </thead>
               <tbody>
                   <tr ng-repeat="driver in driversList | filter: searchFilter">
-                      <td style="vertical-align:middle">{{$index + 1}}.&nbsp;</td>
+                      <td style="vertical-align:middle">{{$index + 1}}.</td>
                       <td style="vertical-align:middle">
-                          <img src="img/flags/flags/32/{{driver.Driver.nationality}}.png">
                           <a href="#/drivers/{{driver.Driver.driverId}}">
-                              {{driver.Driver.givenName}}&nbsp;{{driver.Driver.familyName}}
+                              <img src="img/flags/flags/32/{{driver.Driver.nationality}}.png" style="margin-right: 8px">{{driver.Driver.givenName}}&nbsp;{{driver.Driver.familyName}}
                           </a>
                       </td> 
                       <td style="vertical-align:middle">{{driver.Constructors[0].name}}</td>
-                      <td style="vertical-align:middle"> <span class="badge">{{driver.points}}</span></td>
+                      <td style="vertical-align:middle"> 
+                          <span class="badge">{{driver.points}}</span>
+                      </td>
                   </tr>
               </tbody>
           </table>
         </div>
     </div>  
+
 </body>
