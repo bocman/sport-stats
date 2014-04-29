@@ -59,6 +59,20 @@ angular.module('stats.services', []).
           });
         };
 
+        ergastAPI.getTeamInfo = function(id){
+          return $http({
+            method: 'JSONP', 
+            url: 'http://ergast.com/api/f1/2013/constructors/' + id +'/constructorStandings.json?callback=JSON_CALLBACK'
+          });
+        };
+
+        ergastAPI.getTeamResults = function(id){
+          return $http({
+            method: 'JSONP',
+            url: 'http://ergast.com/api/f1/2013/constructors/'+ id + '/results.json?callback=JSON_CALLBACK'
+          });
+        };
+
 
 
     return ergastAPI;

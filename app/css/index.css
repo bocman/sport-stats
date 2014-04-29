@@ -178,3 +178,22 @@ div.col-xs-2 > img {
 .marginos {
   margin-left: 20px;
 }
+
+/*CHART */
+#chartdiv {
+  
+  color:#000000; 
+  width   : 100%;
+  height    : 700px;
+  font-size : 17px;
+  font-weight: bold;
+}
+
+#chartdiv2 {
+  
+  color:#000000; 
+  width   : 100%;
+  height    : 600px;
+  font-size : 17px;
+  font-weight: bold;
+}

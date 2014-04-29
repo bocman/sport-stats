@@ -1,3 +1,4 @@
+<body  ng-app="stats" ng-controller="constructorResultsController">
 <!-- Navbar -->
 <div class="navbar-wrapper">
     <div class="container">
@@ -36,59 +37,74 @@
 <!-- Content of the page -->
 <div class="container" style="padding-top: 90px">
     <div class="well">
-        <div class="row">
-            <div class="col-sm-4">
-                <h3>{{driver.Driver.givenName}}&nbsp;{{driver.Driver.familyName}}</h3>
-                <strong>Country:</strong> {{driver.Driver.nationality}}
+       <div class="row">
+            <div class="col-sm-4" ng-show="constructorInfo">
+                <h3>{{constructorInfo.Constructor.name}}&nbsp;</h3>
+                <strong>Country:</strong> {{constructorInfo.Constructor.nationality}}
                 &nbsp; 
-                <img ng-show="driver" src="img/flags/flags/32/{{driver.Driver.nationality}}.png" alt="{{driver.Driver.nationality}}">   <br/>
-                <strong>Team:</strong> {{driver.Constructors[0].name}}<br/>
-                <strong>Birth:</strong> {{driver.Driver.dateOfBirth}}<br/>
-                <a href="{{driver.Driver.url}}" target="_blank">Biography</a>
+                <img src="img/flags/flags/32/{{constructorInfo.Constructor.nationality}}.png" alt="{{constructorInfo.Constructor.nationality}}">   <br/>
+                <strong>History:</strong> <a href="{{constructorInfo.Constructor.url}}" target="_blank">Details<span class="glyphicon glyphicon-link" style="margin-right: 3px"></span></a><br/>
+                <strong>Position:&nbsp;</strong>{{constructorInfo.position}}<br>
+                <strong>Points:&nbsp;</strong>{{constructorInfo.points}}<br>
+                <strong>Wins: &nbsp;</strong>{{constructorInfo.wins}}<br>
+
+                
             </div>
 
             <div class="col-sm-4">
-                <img ng-show="driver" src="img/drivers/helmets/{{driver.Driver.driverId}}.jpg" class="img-responsive"/>
+                <img src="img/icons/{{constructorInfo.Constructor.name}}.png" class="img-responsive"/>
+                <img src="img/teams/{{constructorInfo.Constructor.name}}.jpg"  class="img-responsive"/>
             </div>
 
-            <div class="col-sm-4">
-                <img ng-show="driver" src="img/drivers/{{driver.Driver.driverId}}.jpg" width="75%" class="img-responsive"/> 
-            </div>
+            
+
+            
+            
         </div><!-- /.row -->
     </div><!-- /.well -->
 
     <hr class="" style="border-color: gray">
 
     <div class="table-responsive">
+
         <table class="table table-striped table-bordered">
             <thead>
-                <tr><th colspan="5">Formula 1 2013 Results</th></tr>
+                <tr><th colspan="5">{{constructorInfo.Constructor.name}} - 2013 Results</th></tr>
                 <tr>
                     <th>Round</th>
                     <th>Grand Prix</th>
-                    <th>Team</th>
-                    <th>Grid</th>
-                    <th>Race</th>
+                    <th>{{driver1}}</th>
+                    <th>{{driver2}}</th>
+                    <th>Points</th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="race in races | filter: searchFilter">
-                    <td style="vertical-align:middle">{{race.round}}</td>
+                <tr ng-repeat="result in resultsData |  filter: searchFilter">
+                    <td style="vertical-align:middle">{{result.round}}</td>
                     <td style="vertical-align:middle">
-                        <a href="#/races/{{race.round}}">
-                            <img src="img/flags/races/flags/32/{{race.Circuit.Location.country}}.png" style="margin-right: 8px">{{race.raceName}}
+                        <a href="#/races/{{result.round}}">
+                            <img src="img/flags/races/flags/32/{{result.Circuit.Location.country}}.png" style="margin-right: 8px">{{result.raceName}}
                         </a>
                     </td>
-                    <td style="vertical-align:middle">{{race.Results[0].Constructor.name}}</td>
+                    
+                    <td style="vertical-align:middle">{{result.Results[0].position}}.</td>
                     <td style="vertical-align:middle">
-                        <span class="badge">{{race.Results[0].grid}}</span>
+                        {{result.Results[1].position}}.
+                        <!--<span class="badge">{{race.Results[0].grid}}</span> -->
                     </td>
                     <td style="vertical-align:middle">
-                        <span class="badge">{{race.Results[0].position}}</span>
+                       <span class="badge"> {{points[$index]}}</span>
                     </td>
+
+
+                
                 </tr>
             </tbody>
         </table>
+
+        
     </div>
 </div><!-- /.container -->
 
+<script src="js/scripts/trophy-icons.js"></script>
+</body>
