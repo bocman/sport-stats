@@ -1,0 +1,191 @@
+
+
+<!-- Content of the page -->
+<div class="container" style="padding-top: 90px">
+
+    <!-- SELECT SEASON, RACE, DRIVER -->
+    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">Options</h4>
+    </div>
+        <div class="row">
+          <br>
+              <div class="col-md-4">
+                Season: &nbsp;<select name="" id="select_season" onchange="getRaces()">
+                </select>
+              </div>
+          <div class="col-md-4">
+                Race: <select name="" id="select_race">
+                    
+                      </select>
+
+          </div>
+          <div class="col-md-4"></div>
+
+        </div>
+
+        <div class="row">
+         
+          <div class="col-md-4"><p class="places"></p></div>
+          <div class="col-md-4"><p class="places"></p></div>
+          <div class="col-md-4"><p class="places"></p></div>
+
+        </div>
+
+    </div>
+     
+
+    <!-- LLAP TIMES -->
+    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">Lap times</h4>
+    </div>
+        <div class="row">
+          <br>
+          <div class="col-md-4"></div>
+          <div class="col-md-4"></div>
+          <div class="col-md-4"></div>
+
+        </div>
+
+        <div class="row">
+         
+          <div class="col-md-4"><p class="places"></p></div>
+          <div class="col-md-4"><p class="places"></p></div>
+          <div class="col-md-4"><p class="places"></p></div>
+
+        </div>
+
+    </div>
+    
+    <!-- PIT STOPS -->
+    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">Pit stops</h4>
+    </div>
+        <div class="row">
+          <br>
+          <div class="col-md-4"></div>
+          <div class="col-md-4"></div>
+          <div class="col-md-4"></div>
+
+        </div>
+
+        <div class="row">
+         
+          <div class="col-md-4"><p class="places"></p></div>
+          <div class="col-md-4"><p class="places"></p></div>
+          <div class="col-md-4"><p class="places"></p></div>
+
+        </div>
+
+    </div>
+
+    <div class="table-responsive">
+
+        
+
+        
+    </div>
+</div><!-- /.container -->
+
+<script src="js/scripts/trophy-icons.js"></script>
+<script>
+
+    $(function(){
+
+        var rounds = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10,", "11",
+                        "12", "13", "14", "15", "16", "17", "18", "19"
+                     ];
+        var races = [
+        "Australian Grand Prix",
+        "Malaysian Grand Prix", 
+        "Chinese Grand Prix",
+        "Turkish Grand Prix",
+        "Spanish Grand Prix",
+        "Monaco Grand Prix",
+        "Canadian Grand Prix",
+        "European Grand Prix",
+        "British Grand Prix",
+        "German Grand Prix",
+        "Hungarian Grand Prix",
+        "Belgian Grand Prix",
+        "Italian Grand Prix",
+        "Singapore Grand Prix",
+        "Japanese Grand Prix",
+        "Korean Grand Prix",
+        "Indian Grand Prix",
+        "Abu Dhabi Grand Prix",
+        "Brazilian Grand Prix"
+
+        ];
+
+        var current_year = new Date().getFullYear();
+        for(var i=2011; i<=current_year; i++){
+            $('#select_season').append($('<option>', {
+                value : i,
+                text : i
+                }
+            ));
+
+
+        }
+
+        for(var j = 0; j<rounds.length; j++){
+            $('#select_race').append($('<option>', {
+                value : rounds[j],
+                text : races[j]
+                }
+            ));
+        }
+
+        $('#select_race').on('change', function(){
+                    alert("drama");
+                });
+
+        
+
+    });
+    
+    function getRaces(){
+            var season = $('#select_season').val();
+            var races = [];
+            
+            $.ajax({
+            type: 'GET',
+            url:'http://ergast.com/api/f1/'+season+'.json?limit=2500&callback=JSON_CALLBACK',
+            async: false,
+            jsonpCallback: 'jsonCallback',
+            contentType: "application/json",
+            dataType: 'jsonp',
+            success: function(json) {
+                var data = json.MRData.RaceTable.Races;
+                //console.log(data.length);
+                for(var i = 0; i<data.length; i++ ){
+                    races.push(
+                    {
+                        'round' : data[i].round,
+                        'raceName' : data[i].raceName
+                    }
+                        );
+                }  
+                
+                $("#select_race").empty();
+                for(var j = 0; j<races.length; j++){
+                    $('#select_race').append($(
+                           '<option>', {
+                                value:  races[j].round,
+                                text:  races[j].raceName
+                            }
+                        ));
+                } 
+
+                $('#select_race').on('change', function(){
+                   //
+                });
+             } 
+            });   
+                
+    }
+
+</script>

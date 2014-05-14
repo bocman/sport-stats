@@ -45,6 +45,25 @@ stats.controller('driverDetailsController', ['$scope', '$routeParams', 'ergastAP
     $scope.id = $routeParams.id;
     $scope.races = [];
     $scope.driver = null;
+    $scope.DriverData = {
+        'firstPlaces' : 0,
+        'secondPlaces' : 0,
+        'thirdPlaces' : 0,
+        'polePositions': 0,
+        'races' : 0,
+        'careerPoints' : 0,
+        'finishedRaces' : 0,
+        'podiums' : 0,
+        'titles' : 0,
+        'titleYears' : []
+
+    };
+
+    $scope.titleYears="";
+
+    $scope.driverRaces = [];
+
+
 
     $scope.searchFilter = function (race) {
     var keyword = new RegExp($scope.nameFilter, 'i');
@@ -61,6 +80,81 @@ stats.controller('driverDetailsController', ['$scope', '$routeParams', 'ergastAP
     ergastAPIservice.getDriverRaces($scope.id).success(function (response) {
         $scope.races = response.MRData.RaceTable.Races; 
     });
+
+    
+
+    ergastAPIservice.getDriverResults($scope.id).success(function(response){
+        $scope.driverRaces = response.MRData.RaceTable.Races;
+        $scope.DriverData.races = $scope.driverRaces.length;
+
+        var stringToInt;
+        var points = 0;
+        for(var i = 0; i<$scope.driverRaces.length; i++){
+            switch ($scope.driverRaces[i].Results[0].position){
+                case '1':
+                $scope.DriverData.firstPlaces++;
+                break;
+
+                case '2':
+                $scope.DriverData.secondPlaces++;
+                break;
+
+                case '3':
+                $scope.DriverData.thirdPlaces++;
+            }
+
+            if($scope.driverRaces[i].Results[0].grid == '1'){
+                $scope.DriverData.polePositions++;
+            }
+
+            if($scope.driverRaces[i].Results[0].status == "Finished"){
+                $scope.DriverData.finishedRaces++;
+            }
+
+            stringToInt = parseInt($scope.driverRaces[i].Results[0].points);
+            points += stringToInt;
+        }
+
+        
+
+        $scope.DriverData.podiums =  $scope.DriverData.firstPlaces + $scope.DriverData.secondPlaces + $scope.DriverData.thirdPlaces;
+        $scope.DriverData.careerPoints = points;
+
+        /*
+
+        console.log("1st:" + $scope.DriverData.firstPlaces);
+        console.log("2nd: " + $scope.DriverData.secondPlaces);
+        console.log("3rd: " + $scope.DriverData.thirdPlaces);
+        console.log("Poles: " + $scope.DriverData.polePositions);
+        console.log("Races: " +$scope.DriverData.races);
+        console.log("Finished races: " + $scope.DriverData.finishedRaces);
+        console.log("Podiums: " + $scope.DriverData.podiums);
+        console.log("Career points: " + $scope.DriverData.careerPoints);
+
+        */
+        
+        
+    });
+
+        ergastAPIservice.getDriverTitles ($scope.id).success(function(response){
+            $scope.DriverData.titles = response.MRData.total;
+            var data = response.MRData;
+            console.log("Titles: " + $scope.DriverData.titles);
+            for(var i = 0; i<data.StandingsTable.StandingsLists.length; i++){
+                $scope.DriverData.titleYears.push(data.StandingsTable.StandingsLists[i].season);
+            }
+
+            for(var f = 0; f<$scope.DriverData.titleYears.length; f++){
+                $scope.titleYears += $scope.DriverData.titleYears[f] + " ";
+            }
+        });
+
+    
+
+    
+
+
+
 }]);
 
 stats.controller('teamsStandingsController', ['$scope', 'ergastAPIservice' , function ($scope,ergastAPIservice) {
@@ -135,8 +229,57 @@ stats.controller('constructorResultsController', ['$scope', '$routeParams' ,'erg
         var keyword = new RegExp($scope.nameFilter, 'i');
         return !$scope.nameFilter || keyword.test(result.raceName);
         };
-       
-        
+
+
+        $scope.TeamData = {
+            'races' : 0,
+            'podiums' : 0,
+            'firstPlaces' : 0,
+            'secondPlaces' : 0,
+            'thirdPlaces' : 0,
+            'polePositions' : 0,
+            'titles' : 0
+
+
+        };
+
+        var teamData = {};
+
+        ergastAPIservice.getTeamRaces($scope.id).success(function(response){
+            teamData = response.MRData;
+
+            $scope.TeamData.races = teamData.RaceTable.Races.length;
+            for(var i = 0; i<teamData.RaceTable.Races.length; i++){
+                if(teamData.RaceTable.Races[i].Results[0].position == '1' || teamData.RaceTable.Races[i].Results[1].position == '1'){
+                    $scope.TeamData.firstPlaces++;
+                }
+
+                if(teamData.RaceTable.Races[i].Results[0].position == '2' || teamData.RaceTable.Races[i].Results[1].position == '2'){
+                    $scope.TeamData.secondPlaces++;
+                }
+
+                if(teamData.RaceTable.Races[i].Results[0].position == '3' || teamData.RaceTable.Races[i].Results[1].position == '3'){
+                    $scope.TeamData.thirdPlaces++;
+                }
+
+                if(teamData.RaceTable.Races[i].Results[0].grid == '1' || teamData.RaceTable.Races[i].Results[1].grid == '1'){
+                    $scope.TeamData.polePositions++;
+                }
+
+            }
+
+            console.log($scope.TeamData.polePositions);
+            /*
+            console.log($scope.TeamData.firstPlaces);
+            console.log($scope.TeamData.secondPlaces);
+            console.log($scope.TeamData.thirdPlaces);
+            */
+            //console.log(teamData.total);
+            //console.log(teamData.RaceTable.Races.length);
+
+            $scope.TeamData.podiums = $scope.TeamData.firstPlaces + $scope.TeamData.secondPlaces + $scope.TeamData.thirdPlaces;
+            //console.log($scope.TeamData.podiums);
+        });
 
         ergastAPIservice.getTeamInfo($scope.id).success(function(response){
         $scope.constructorInfo = response.MRData.StandingsTable.StandingsLists[0].ConstructorStandings[0];
@@ -178,6 +321,7 @@ stats.config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/races', {templateUrl: 'partials/races.html', controller: 'racesController' });
   $routeProvider.when('/races/:round', {templateUrl: 'partials/results.html', controller: 'racesQualyResultsController' });
   $routeProvider.when('/teams/:id', {templateUrl: 'partials/team.html', controller: 'constructorResultsController'});
+$routeProvider.when('/lap-chart', {templateUrl: 'partials/times.html', controller: ''});
   $routeProvider.otherwise({redirectTo: '/f1.html'});
 }]);
 

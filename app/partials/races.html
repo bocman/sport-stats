@@ -1,41 +1,5 @@
-<body ng-app="stats" ng-controller="racesController">
-    <!-- Navbar -->
-    <div class="navbar-wrapper">
-        <div class="container">
-            <div class="navbar navbar-inverse navbar-static-top" role="navigation">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                          <span class="sr-only">Toggle navigation</span>
-                          <span class="icon-bar"></span>
-                          <span class="icon-bar"></span>
-                          <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="index.html">SportScience</a>
-                    </div>
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li><a href="#/drivers"><img src="img/icons/drivers.png" width="16" height="16" alt="Drivers">&nbsp;&nbsp;Drivers</a></li>
-                            <li><a href="#/teams"><img src="img/icons/teams.png" width="16" height="16" alt="Teams">&nbsp;&nbsp;Teams</a></li>
-                            <li><a href="#/races"><img src="img/icons/races.png" width="16" height="16" alt="Races">&nbsp;&nbsp;Races</a></li>
-                            <li><a href="#/lap-chart"><img src="img/icons/stopwatch-16.png" width="16" height="16" alt="Races">&nbsp;&nbsp;Lap Chart</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="signin-margin"><a href="sign-in.html">Sign in</a></li>
-                        </ul>
-                        <form class="navbar-form navbar-right" role="search">
-                            <div class="form-group">
-                                <input type="text"  class="form-control" placeholder="Search" ng-model="nameFilter" >
-                            </div>                    
-                        </form>
-                    </div>
-                </div><!-- /.navbar-container -->
-            </div><!-- /.navbar -->
-        </div><!-- /.wrapper-container -->
-    </div><!-- /.navbar-wrapper -->
-
-    <!-- Content of the page -->
-    <div class="container" style="padding-top: 90px">
+<!-- Content of the page -->
+    <div class="container" style="padding-top: 90px"  ng-controller="racesController">
         <div class="table-responsive">
           <table class="table table-striped table-bordered">
               <thead>
@@ -52,18 +16,18 @@
                   <tr ng-repeat="race in racesList | filter: searchFilter">
                       <td style="vertical-align:middle">{{$index + 1}}</td>
                       <td style="vertical-align:middle">
-                        <a href="#/races/{{race.round}}">
+                        <a href="#/races/{{race.round}}" ng-cloak>
                           <img src="img/flags/races/flags/32/{{race.Circuit.Location.country}}.png" alt="{{race.Circuit.Location.country}}" style="margin-right: 8px">{{race.raceName}}
                         </a>
                       </td>
                       <td style="vertical-align:middle">
                         <a href="{{race.url}}" target="_blank">
-                          <span class="glyphicon glyphicon-link" style="margin-right: 3px"></span>{{race.Circuit.circuitName}}
+                          <span class="glyphicon glyphicon-link" style="margin-right: 3px"></span ng-cloak>{{race.Circuit.circuitName}}
                         </a>
                       </td>
-                      <td style="vertical-align:middle">{{race.date}}</td>
+                      <td style="vertical-align:middle" ng-cloak>{{race.date}}</td>
                       <td style="vertical-align:middle">
-                        <a href="#/drivers/{{race.Results[0].Driver.driverId}}">
+                        <a href="#/drivers/{{race.Results[0].Driver.driverId}}" ng-cloak>
                           <img src="img/flags/flags/32/{{race.Results[0].Driver.nationality}}.png" alt="" style="margin-right: 8px">{{race.Results[0].Driver.givenName}}&nbsp;{{race.Results[0].Driver.familyName}}
                         </a>
                       </td>
@@ -73,4 +37,3 @@
         </div>
     </div>
     
-</body>

@@ -197,3 +197,28 @@ div.col-xs-2 > img {
   font-size : 17px;
   font-weight: bold;
 }
+
+#cpanel-wrapper{
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.trophy{
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.places{
+  text-align:center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.padding-left{
+  padding-left: 15px;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
