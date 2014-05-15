@@ -45,6 +45,21 @@ angular.module('stats.services', []).
           });
         };
 
+        ergastAPI.getDriverResults = function(id){
+          return $http({
+            method : 'JSONP',
+            //url: 'http://ergast.com/api/f1/drivers/'+id+'/results.json?callback=JSON_CALLBACK'
+            url: 'http://ergast.com/api/f1/drivers/'+id+'/results.json?limit=1100&callback=JSON_CALLBACK'
+          });
+        };
+
+        ergastAPI.getDriverTitles = function(id){
+          return $http({
+            method: 'JSONP',
+            url: 'http://ergast.com/api/f1/drivers/'+id + '/driverStandings/1.json?limit=30&callback=JSON_CALLBACK'
+          });
+        }
+
         ergastAPI.getRaceQualyResults = function(round){
           return $http({
             method: 'JSONP',
@@ -56,6 +71,27 @@ angular.module('stats.services', []).
           return $http({
             method: 'JSONP',
             url: "http://ergast.com/api/f1/2013/"+round+"/results.json?callback=JSON_CALLBACK"
+          });
+        };
+
+        ergastAPI.getTeamInfo = function(id){
+          return $http({
+            method: 'JSONP', 
+            url: 'http://ergast.com/api/f1/2013/constructors/' + id +'/constructorStandings.json?callback=JSON_CALLBACK'
+          });
+        };
+
+        ergastAPI.getTeamResults = function(id){
+          return $http({
+            method: 'JSONP',
+            url: 'http://ergast.com/api/f1/2013/constructors/'+ id + '/results.json?callback=JSON_CALLBACK'
+          });
+        };
+
+        ergastAPI.getTeamRaces = function(id){
+          return $http({
+            method: 'JSONP',
+            url: 'http://ergast.com/api/f1/constructors/'+id+'/results.json?limit=3300&callback=JSON_CALLBACK'
           });
         };
 

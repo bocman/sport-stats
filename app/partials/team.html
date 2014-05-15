@@ -1,0 +1,95 @@
+
+
+<!-- Content of the page -->
+<div class="container" style="padding-top: 90px" ng-controller="constructorResultsController">
+    <div class="well">
+       <div class="row">
+            <div class="col-sm-4" ng-show="constructorInfo">
+                <h3 ng-cloak>{{constructorInfo.Constructor.name}}&nbsp;</h3>
+                <strong>Country:</strong> {{constructorInfo.Constructor.nationality}}
+                &nbsp; 
+                <img src="img/flags/flags/32/{{constructorInfo.Constructor.nationality}}.png" alt="{{constructorInfo.Constructor.nationality}}">   <br/>
+                <strong>History:</strong> <a ng-cloak href="{{constructorInfo.Constructor.url}}" target="_blank">Details<span class="glyphicon glyphicon-link" style="margin-right: 3px"></span></a><br/>
+                <strong>Position:&nbsp;</strong>{{constructorInfo.position}}<br>
+                <strong>Points:&nbsp;</strong>{{constructorInfo.points}}<br>
+                <strong>Wins: &nbsp;</strong>{{constructorInfo.wins}}<br>
+
+                
+            </div>
+
+            <div class="col-sm-4">
+                <img src="img/icons/{{constructorInfo.Constructor.name}}.png" class="img-responsive"/>
+                <img src="img/teams/{{constructorInfo.Constructor.name}}.jpg"  class="img-responsive"/>
+            </div>
+
+            
+
+            
+            
+        </div><!-- /.row -->
+    </div><!-- /.well -->
+
+    <!-- TROPHY CABINET -->
+    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">Trophy Cabinet</h4>
+    </div>
+        <div class="row">
+          <br>
+          <div class="col-md-4"><img class="trophy" src="img/icons/Trophy-gold-icon-96.png" alt="" ></div>
+          <div class="col-md-4"><img src="img/icons/Trophy-silver-icon-96.png" alt="" class="trophy"></div>
+          <div class="col-md-4"><img src="img/icons/Trophy-bronze-icon-96.png" alt="" class="trophy"></div>
+
+        </div>
+
+        <div class="row">
+         
+          <div class="col-md-4"><p class="places" ng-cloak>{{TeamData.firstPlaces}}</p></div>
+          <div class="col-md-4"><p class="places" ng-cloak>{{TeamData.secondPlaces}}</p></div>
+          <div class="col-md-4"><p class="places" ng-cloak>{{TeamData.thirdPlaces}}</p></div>
+
+        </div>
+
+    </div>
+
+    <div class="table-responsive">
+
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr><th colspan="5" ng-cloak>{{constructorInfo.Constructor.name}} - 2013 Results</th></tr>
+                <tr>
+                    <th>Round</th>
+                    <th>Grand Prix</th>
+                    <th ng-cloak>{{driver1}}</th>
+                    <th ng-cloak>{{driver2}}</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="result in resultsData |  filter: searchFilter">
+                    <td style="vertical-align:middle" ng-cloak>{{result.round}}</td>
+                    <td style="vertical-align:middle">
+                        <a href="#/races/{{result.round}}" ng-cloak>
+                            <img src="img/flags/races/flags/32/{{result.Circuit.Location.country}}.png" style="margin-right: 8px">{{result.raceName}}
+                        </a>
+                    </td>
+                    
+                    <td style="vertical-align:middle" ng-cloak>{{result.Results[0].position}}.</td>
+                    <td style="vertical-align:middle" ng-cloak>
+                        {{result.Results[1].position}}.
+                        <!--<span class="badge">{{race.Results[0].grid}}</span> -->
+                    </td>
+                    <td style="vertical-align:middle">
+                       <span class="badge" ng-cloak> {{points[$index]}}</span>
+                    </td>
+
+
+                
+                </tr>
+            </tbody>
+        </table>
+
+        
+    </div>
+</div><!-- /.container -->
+
