@@ -222,3 +222,130 @@ div.col-xs-2 > img {
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
+
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+.menu > li:nth-child(1):before {
+  content: "";
+  padding: 0;
+}
+
+
+/*
+HTML 5 Template Name: 
+File: 960px Framework CSS
+Author: OS Templates
+Author URI: http://www.os-templates.com/
+Licence: <a href="http://www.os-templates.com/template-terms">Website Template Licence</a>
+*/
+
+.one_half, 
+.one_third, .two_third, 
+.one_quarter, .two_quarter, .three_quarter, 
+.one_fifth, .two_fifth, .three_fifth, .four_fifth{display:inline-block; float:left; margin:0 0 0 20px; list-style:none;}
+
+.one_third, .two_third{margin:0 0 0 30px;}
+
+.first, 
+.one_half:first-child, 
+.one_third:first-child, .two_third:first-child, 
+.one_quarter:first-child, .two_quarter:first-child, .three_quarter:first-child, 
+.one_fifth:first-child, .two_fifth:first-child, .three_fifth:first-child, .four_fifth:first-child{margin-left:0;}
+
+.two_half, .three_third, .four_quarter, .five_fifth{display:block; width:100%; clear:both;}
+
+/*----------------------------------------------Half Grid-------------------------------------*/
+
+.one_half{width:470px;}
+
+/*----------------------------------------------Third Grid-------------------------------------*/
+
+.one_third{width:300px;}
+.two_third{width:630px;}
+
+/*----------------------------------------------Quarter Grid-------------------------------------*/
+
+.one_quarter{width:225px;}
+.two_quarter{width:470px;}
+.three_quarter{width:715px;}
+
+/*----------------------------------------------Fifth Grid-------------------------------------*/
+
+.one_fifth{width:176px;}
+.two_fifth{width:372px;}
+.three_fifth{width:568px;}
+.four_fifth{width:764px;}
+
+
+
+body_register {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #eee;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.btn-margin {
+    margin-top: 15px;
+}
+
+
+
+
