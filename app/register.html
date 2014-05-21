@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="stats">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,36 +28,67 @@
 		</script>
     </head>
 
-    <body class="body_register">
+    <body class="body_register" ng-controller="LoginController">
         <!-- Content of the page -->
         <div class="container">
 
-            <form id="form-register" class="form-signin" role="form" method="POST">
-                <h2 class="form-signin-heading">Please register</h2>
-                <div class="form-group has-feedback">
-                    <label class="control-label" for="username">Username</label>
-                    <input type="text" id="username" class="form-control" name="username" autofocus>
-                    <span class="form-control-feedback glyphicon" style="top:30px"></span>
+            <div class="row">
+                <div class="col-xs-6 no-decoration">
+                <!-- Facebook login -->
+                <a href="" ng-click="auth.$login('facebook')">
+                    <div class="well well-fb">                    
+                        <img src="img/social-icons/fb.png" class="img-responsive" alt="Facebook">
+                        <h3>Register using Facebook</h3>   
+                    </div>
+                </a>
+                <!-- Google login -->
+                <a href="" ng-click="auth.$login('google')">
+                    <div class="well well-google">  
+                        <img src="img/social-icons/google+.png" class="img-responsive" alt="Google+">
+                        <h3>Register using Google+</h3>
+                    </div>
+                </a>
+                <!-- Twitter login -->
+                <a href="" ng-click="auth.$login('twitter')">
+                    <div class="well well-twitter">                    
+                        <img src="img/social-icons/twitter.png" class="img-responsive" alt="Twitter"> 
+                        <h3>Register using Twitter</h3>  
+                    </div>
+                </a>
+            </div>
+                <!-- E-mail register -->
+                <div class="col-xs-6 well">  
+                    <form id="form-register" class="form-signin" role="form" method="POST">
+                        <h2 class="form-signin-heading">Register with e-mail</h2>
+                        <!-- Username -->
+                        <div class="form-group has-feedback">
+                            <label class="control-label" for="username">Username</label>
+                            <input type="text" id="username" class="form-control" name="username" autofocus>
+                            <span class="form-control-feedback glyphicon" style="top:30px"></span>
+                        </div>
+                        <!-- E-mail -->
+                        <div class="form-group has-feedback">
+                            <label class="control-label" for="email">E-mail</label>
+                            <input type="email" id="email" class="form-control" name="email">
+                            <span class="form-control-feedback glyphicon" style="top:30px"></span>
+                        </div>
+                        <!-- Password -->
+                        <div class="form-group has-feedback">
+                            <label class="control-label" for="password">Password</label>
+                            <input type="password" id="password" class="form-control" name="password">
+                            <span class="form-control-feedback glyphicon" style="top:30px"></span>
+                        </div>
+                        <!-- Confrim password -->
+                        <div class="form-group has-feedback">
+                            <label class="control-label" for="passwordconfirm">Confirm password</label>
+                            <input type="password" id="passwordconfirm" class="form-control" name="passwordconfirm">
+                            <span class="form-control-feedback glyphicon" style="top:30px"></span>
+                        </div>
+                       
+                        <button class="btn btn-lg btn-primary btn-block btn-margin" type="submit">Register</button>
+                    </form>
                 </div>
-                <div class="form-group has-feedback">
-                    <label class="control-label" for="email">E-mail</label>
-                    <input type="email" id="email" class="form-control" name="email">
-                    <span class="form-control-feedback glyphicon" style="top:30px"></span>
-                </div>
-                <div class="form-group has-feedback">
-                    <label class="control-label" for="password">Password</label>
-                    <input type="password" id="password" class="form-control" name="password">
-                    <span class="form-control-feedback glyphicon" style="top:30px"></span>
-                </div>
-                <div class="form-group has-feedback">
-                    <label class="control-label" for="passwordconfirm">Confirm password</label>
-                    <input type="password" id="passwordconfirm" class="form-control" name="passwordconfirm">
-                    <span class="form-control-feedback glyphicon" style="top:30px"></span>
-                </div>
-               
-                <button class="btn btn-lg btn-primary btn-block btn-margin" type="submit">Register</button>
-            </form>
-
+            </div><!-- /row -->
         </div> <!-- /container -->
 
 
@@ -65,6 +96,19 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"></script>
+        
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
+        <script src='https://cdn.firebase.com/js/simple-login/1.4.1/firebase-simple-login.js'></script>
+        <script src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
+        <script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
+        
+        <script src="js/scripts/angular-route.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/services.js"></script>
+        <script src="js/controllers.js"></script>
+        <script src="js/filters.js"></script>
+        <script src="js/directives.js"></script> 
+
         <script src="js/scripts/validate-register.js"></script>
     </body>
 </html>
