@@ -1,7 +1,17 @@
 'use strict';
 
 /* Controllers */
-var stats = angular.module('stats.controllers', []);
+var stats = angular.module('stats.controllers', ['firebase']);
+
+// Login controller 
+stats.controller("LoginController", ["$scope", "$firebase", "$firebaseSimpleLogin",
+        function($scope, $firebase, $firebaseSimpleLogin) 
+        {
+            var ref = new Firebase("https://glowing-fire-8759.firebaseio.com/");
+            $scope.auth = $firebaseSimpleLogin(ref);
+        }
+    ]);
+
 stats.controller('driversStandingsController', ['$scope', 'ergastAPIservice' , function ($scope,ergastAPIservice) {
 
     $scope.driversList = [];
