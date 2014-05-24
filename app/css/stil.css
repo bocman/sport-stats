@@ -240,6 +240,25 @@ div.no-decoration > a {
   background: rgba(92, 184, 92, 0.9);
 }
 
+/*********
+* DRIVER *
+*********/
+.race-stats {
+  background-color: #eee;
+}
+
+.column-border {
+  border-right: 1px solid #999;
+}
+
+div.table-responsive > table > tbody > tr > td, img {
+  padding-right: 8px;
+  vertical-align: middle;
+} 
+
+div.row > div.col-sm-4 > a > span {
+  vertical-align: middle;
+}
 
 /*********
  * CHART *
@@ -280,6 +299,10 @@ div.no-decoration > a {
 
 .padding-left {
   padding-left: 15px;
+}
+
+.padding-right {
+  padding-right: 15px;
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
