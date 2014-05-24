@@ -29,10 +29,10 @@
         </script>
     </head>
 
-    <body class="body_register" ng-controller="LoginController">
+    <body class="body_register" ng-controller="LoginController">   
         <div class="row">
             <!-- Social login  -->
-            <div class="col-xs-6 no-decoration">
+            <div class="col-md-6 no-decoration">
                 <!-- Facebook login -->
                 <a href="" ng-click="auth.$login('facebook')">
                     <div class="well well-fb">                    
@@ -56,7 +56,7 @@
                 </a>
             </div>
             <!-- E-mail login -->
-            <div class="col-xs-6 well">    
+            <div class="col-md-6 well">    
                 <form id="form-sign-in" class="form-signin" role="form" method="POST">
                     <h2 class="form-signin-heading">Sign in with e-mail</h2>
                     <!-- E-mail address -->
@@ -79,7 +79,7 @@
                 </form>
 
                 <br>
-                <hr class="" style="border-color: gray">
+                <hr class="gray-divider">
                 New to SportScience?
                 <br>
                 <a href="register.html">Register</a>
@@ -88,7 +88,8 @@
                 <br>
                 <a href="#resetpassword">Reset password</a>
             </div>            
-        </div><!-- /row -->
+        </div><!-- /.row -->
+
 
         <!-- Bootstrap core JavaScript -->
         <!-- Placed at the end of the document so the pages load faster -->
@@ -107,7 +108,6 @@
         <script src="js/filters.js"></script>
         <script src="js/directives.js"></script> 
 
-        
         <script src="js/scripts/validate-signin.js"></script>
     </body>
 

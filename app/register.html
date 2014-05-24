@@ -24,16 +24,13 @@
 
 		  ga('create', 'UA-51107683-1', 'sport-statistics.herokuapp.com');
 		  ga('send', 'pageview');
-
 		</script>
     </head>
 
     <body class="body_register" ng-controller="LoginController">
         <!-- Content of the page -->
-        <div class="container">
-
-            <div class="row">
-                <div class="col-xs-6 no-decoration">
+        <div class="row">
+            <div class="col-md-6 no-decoration">
                 <!-- Facebook login -->
                 <a href="" ng-click="auth.$login('facebook')">
                     <div class="well well-fb">                    
@@ -56,40 +53,39 @@
                     </div>
                 </a>
             </div>
-                <!-- E-mail register -->
-                <div class="col-xs-6 well">  
-                    <form id="form-register" class="form-signin" role="form" method="POST">
-                        <h2 class="form-signin-heading">Register with e-mail</h2>
-                        <!-- Username -->
-                        <div class="form-group has-feedback">
-                            <label class="control-label" for="username">Username</label>
-                            <input type="text" id="username" class="form-control" name="username" autofocus>
-                            <span class="form-control-feedback glyphicon" style="top:30px"></span>
-                        </div>
-                        <!-- E-mail -->
-                        <div class="form-group has-feedback">
-                            <label class="control-label" for="email">E-mail</label>
-                            <input type="email" id="email" class="form-control" name="email">
-                            <span class="form-control-feedback glyphicon" style="top:30px"></span>
-                        </div>
-                        <!-- Password -->
-                        <div class="form-group has-feedback">
-                            <label class="control-label" for="password">Password</label>
-                            <input type="password" id="password" class="form-control" name="password">
-                            <span class="form-control-feedback glyphicon" style="top:30px"></span>
-                        </div>
-                        <!-- Confrim password -->
-                        <div class="form-group has-feedback">
-                            <label class="control-label" for="passwordconfirm">Confirm password</label>
-                            <input type="password" id="passwordconfirm" class="form-control" name="passwordconfirm">
-                            <span class="form-control-feedback glyphicon" style="top:30px"></span>
-                        </div>
-                       
-                        <button class="btn btn-lg btn-primary btn-block btn-margin" type="submit">Register</button>
-                    </form>
-                </div>
-            </div><!-- /row -->
-        </div> <!-- /container -->
+            <!-- E-mail register -->
+            <div class="col-md-6 well">  
+                <form id="form-register" class="form-signin" role="form" method="POST">
+                    <h2 class="form-signin-heading">Register with e-mail</h2>
+                    <!-- Username -->
+                    <div class="form-group has-feedback">
+                        <label class="control-label" for="username">Username</label>
+                        <input type="text" id="username" class="form-control" name="username" autofocus>
+                        <span class="form-control-feedback glyphicon" style="top:30px"></span>
+                    </div>
+                    <!-- E-mail -->
+                    <div class="form-group has-feedback">
+                        <label class="control-label" for="email">E-mail</label>
+                        <input type="email" id="email" class="form-control" name="email">
+                        <span class="form-control-feedback glyphicon" style="top:30px"></span>
+                    </div>
+                    <!-- Password -->
+                    <div class="form-group has-feedback">
+                        <label class="control-label" for="password">Password</label>
+                        <input type="password" id="password" class="form-control" name="password">
+                        <span class="form-control-feedback glyphicon" style="top:30px"></span>
+                    </div>
+                    <!-- Confrim password -->
+                    <div class="form-group has-feedback">
+                        <label class="control-label" for="passwordconfirm">Confirm password</label>
+                        <input type="password" id="passwordconfirm" class="form-control" name="passwordconfirm">
+                        <span class="form-control-feedback glyphicon" style="top:30px"></span>
+                    </div>
+                   
+                    <button class="btn btn-lg btn-primary btn-block btn-margin" type="submit">Register</button>
+                </form>
+            </div>
+        </div><!-- /row -->
 
 
         <!-- Bootstrap core JavaScript -->
