@@ -56,7 +56,7 @@
                                         Sign in
                                     </a>
                                     
-                                    <a href="#" ng-show="auth.user" ng-click="auth.$logout()">
+                                    <a href="#" ng-show="auth.user" ng-click="auth.$logout()" ng-cloak>
                                         {{auth.user.displayName}} | Logout
                                     </a>               
                                 </li>

@@ -51,10 +51,26 @@
                             </div>
                             <div class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav">
-                                    <li><a href="#/drivers"><img src="img/icons/drivers.png" width="16" height="16" alt="Drivers">&nbsp;&nbsp;Drivers</a></li>
-                                    <li><a href="#/teams"><img src="img/icons/teams.png" width="16" height="16" alt="Teams">&nbsp;&nbsp;Teams</a></li>
-                                    <li><a href="#/races"><img src="img/icons/races.png" width="16" height="16" alt="Races">&nbsp;&nbsp;Races</a></li>
-                                    <li><a href="#/lap-chart"><img src="img/icons/stopwatch-16.png" width="16" height="16" alt="Races">&nbsp;&nbsp;Lap Chart</a></li>
+                                    <li>
+                                        <a href="#/drivers">
+                                            <img src="img/icons/drivers.png" width="21" height="18" alt="Drivers">&nbsp;&nbsp;Drivers
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#/teams">
+                                            <img src="img/icons/teams.png" width="21" height="18" alt="Teams">&nbsp;&nbsp;Teams
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#/races">
+                                            <img src="img/icons/races.png" width="21" height="18" alt="Races">&nbsp;&nbsp;Races
+                                        </a>
+                                    </li>
+                                    <li ng-show="auth.user">
+                                        <a href="#/lap-chart">
+                                            <img src="img/icons/stopwatch-16.png" width="21" height="18" alt="Races">&nbsp;&nbsp;Lap Chart
+                                        </a>
+                                    </li>
                                 </ul>
                                 <ul class="nav navbar-nav navbar-right">
                                     <li class="signin-margin">
@@ -62,7 +78,7 @@
                                             Sign in
                                         </a>
                                     
-                                        <a href="#" ng-show="auth.user" ng-click="auth.$logout()">
+                                        <a href="#" ng-show="auth.user" ng-click="auth.$logout()" ng-cloak>
                                             {{auth.user.displayName}} | Logout
                                         </a>               
                                     </li>
