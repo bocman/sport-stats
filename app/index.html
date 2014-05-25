@@ -24,7 +24,7 @@
 		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-		  ga('create', 'UA-51107683-1', 'sport-statistics.herokuapp.com');
+		  ga('create', 'UA-51107683-1', 'sport-stats.herokuapp.com');
 		  ga('send', 'pageview');
 		</script>
         
@@ -154,12 +154,19 @@
 
             <!-- Footer -->
             <footer>
-                <p class="pull-right"><a href="#">Back to top</a></p>
+                <div class="pull-right">
+                    <!-- Tumblr -->
+                    <a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:129px; height:20px; background:url('http://platform.tumblr.com/v1/share_3.png') top left no-repeat transparent;">Share on Tumblr</a>
+                    <!-- Google+ -->
+                    <div class="g-plus" data-action="share" data-annotation="none" data-href="https://sport-stats.herokuapp.com"></div>
+                    <!-- Twitter -->
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en"></a>     
+                </div>
                 <p>&copy; 2014 sportScience &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+                
             </footer>
 
         </div><!-- /.container -->
-
 
 
         <!-- Bootstrap core JavaScript -->
@@ -180,7 +187,18 @@
         <script src="js/services.js"></script>
         <script src="js/controllers.js"></script>
         <script src="js/filters.js"></script>
-        <script src="js/directives.js"></script> 
+        <script src="js/directives.js"></script>
+
+        <script>
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+            window.___gcfg = {lang: 'sl'};
+              (function() {
+                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                po.src = 'https://apis.google.com/js/platform.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+              })();
+        </script> 
+        <script src="http://platform.tumblr.com/v1/share.js"></script>
 
     </body>
 </html>
