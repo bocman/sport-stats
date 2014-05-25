@@ -34,7 +34,7 @@ body {
 
 /* Sign in button */
 .signin-margin {
-  margin-right: 20px;
+  padding-right: 15px;
 }
 .signin-margin-index {
   margin-right: 30px;
@@ -104,6 +104,10 @@ div.sports > div.row a {
   text-decoration: none;
 }
 
+.gray-divider {
+  border-color: gray;
+}
+
 
 /******************
  * RESPONSIVE CSS *
@@ -156,6 +160,11 @@ div.sports > div.row a {
 div.col-xs-2 > img {
   margin-top: 15px;
   position: relative;
+}
+
+div.container > div.well > div.row > a {
+  color: inherit;
+  text-decoration: none; 
 }
 
 
