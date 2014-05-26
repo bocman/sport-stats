@@ -8,14 +8,14 @@
         <meta name="author" content="Marko Marolt, Lenč Skumavec and Boštjan Novak">
         <link rel="shortcut icon" href="img/favicon.ico">
 
-        <title>Contact us</title>
+        <title>About us</title>
 
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
         <!-- Custom styles for this template -->
         <link rel="stylesheet" href="css/stil.css"> 
-			
+		
 		<script>
 		   //GOOGLE ANALYTICS
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -23,14 +23,18 @@
 		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-
+<<<<<<< HEAD
+		  ga('create', 'UA-51107683-1', 'sport-statistics.herokuapp.com');
+=======
 		  ga('create', 'UA-51107683-1', 'sport-stats.herokuapp.com');
+>>>>>>> upstream/master
 		  ga('send', 'pageview');
 		</script>
 		
     </head>
 
     <body ng-controller="LoginController">
+        <!-- Navbar -->
         <div class="navbar-wrapper">
             <div class="container">
                 <div class="navbar navbar-inverse navbar-static-top" role="navigation">
@@ -46,8 +50,8 @@
                         </div>
                         <div class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="about-us.html">About</a></li>
-                                <li class="active" ><a href="#">Contact</a></li>
+                                <li class="active"><a href="#">About</a></li>
+                                <li><a href="contact.html">Contact</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="signin-margin-index">
@@ -65,64 +69,42 @@
                 </div><!-- /.navbar -->
             </div><!-- /.wrapper-container -->
         </div><!-- /.navbar-wrapper -->
-
+        
+        <!-- Content of the page -->
         <div class="container container-padding">
-            <h2>Don't be shy!</h2>
-            <p>Got a question or a remark? Or if you just wanna say hello, please feel free to contact us.</p>
-            <br>
-            <div class="well">
-                <div class="row">
-                    <!-- E-mail -->
-                    <a href="mailto:info@sportscience.si">
-                        <div class="col-xs-2 text-center">  
-                            <img src="img/social-icons/email.png" class="img-responsive center-block" alt="E-mail address">
-                            <strong class="invisible">info@sportscience.si</strong>
-                        </div>
-                    </a> 
-                    <!-- Telephone -->
-                    <div class="col-xs-2 text-center">
-                        <img src="img/social-icons/phone.png" class="img-responsive center-block" alt="Telephone">
-                        <strong class="invisible">+38641234567</strong>
-                    </div>
-                    <!-- Facebook -->
-                    <a href="http://facebook.com" target="_blank">
-                        <div class="col-xs-2 text-center">
-                            <img src="img/social-icons/fb.png" class="img-responsive center-block" alt="Facebook">
-                            <strong class="invisible">/sportscience</strong>
-                        </div>
-                    </a>
-                    <!-- Google+ -->
-                    <a href="https://plus.google.com" target="_blank">
-                        <div class="col-xs-2 text-center">
-                            <img src="img/social-icons/google+.png" class="img-responsive center-block" alt="Google+">
-                            <strong class="invisible">/sportscience</strong>
-                        </div>
-                    </a>
-                    <!-- Twitter -->
-                    <a href="http://twitter.com" target="_blank">
-                        <div class="col-xs-2 text-center">
-                            <img src="img/social-icons/twitter.png" class="img-responsive center-block" alt="Twitter">
-                            <strong class="invisible">@sportscience</strong>
-                        </div>
-                    </a>
-                    <!-- Youtube -->
-                    <a href="http://youtube.com" target="_blank">
-                        <div class="col-xs-2 text-center">
-                            <img src="img/social-icons/youtube.png" class="img-responsive center-block" alt="Twitter">
-                            <strong class="invisible">/sportscience</strong>
-                        </div>
-                    </a>
-                </div><!-- /.row -->
-            </div><!-- /.well -->
-        </div><!-- /.container -->
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="holder.js/200x200/text:Ni slike">
+                    <h3>Lenč Skumavec </h3>
+                    <p> <b> Programmer </b><br>
+                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's 				                          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a                         type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining                         essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum                         passages ...                        </p>
+                    <p><a class="btn btn-default" href="#" role="button">Pošlji sporočilo &raquo;</a></p>
+                    </div><!-- /.col-md-4 -->
 
-
+                <div class="col-md-4">
+                    <img src="holder.js/200x200/text:Ni slike">
+                    <h3>Boštjan Novak</h3>
+                    <p> <b> Programmer </b><br>
+                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's 				                          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a                         type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining                         essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum                         passages,...                        </p>
+                    <p><a class="btn btn-default" href="#" role="button">Pošlji sporočilo &raquo;</a></p>
+                </div><!-- /.col-md-4 -->
+                
+                <div class="col-md-4">
+                    <img src="holder.js/200x200/text:Ni slike">
+                    <h3>Marko Marolt</h3>
+                    <p> <b> Programmer </b><br>
+                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's 				                          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a                         type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining                         essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum                         passages ..                        </p>
+                    <p><a class="btn btn-default" href="#" role="button">Pošlji sporočilo &raquo;</a></p>
+                </div><!-- /.col-md-4 -->
+            </div><!-- /.row -->    
+        </div><!-- /.container --> 
+         
+        
         <!-- Bootstrap core JavaScript -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-        <script src="js/scripts/contact.js"></script>
+        <script src="js/scripts/docs.min.js"></script> 
 
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
         <script src='https://cdn.firebase.com/js/simple-login/1.4.1/firebase-simple-login.js'></script>
@@ -136,6 +118,6 @@
         <script src="js/filters.js"></script>
         <script src="js/directives.js"></script> 
 
-
+    
     </body>
 </html>
