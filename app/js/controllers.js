@@ -1,7 +1,67 @@
 'use strict';
 
 /* Controllers */
-var stats = angular.module('stats.controllers', []);
+var stats = angular.module('stats.controllers', ['firebase']);
+
+// Login controller 
+stats.controller("LoginController", ["$scope", "$firebase", "$firebaseSimpleLogin",
+        function($scope, $firebase, $firebaseSimpleLogin) 
+        {
+            var ref = new Firebase("https://glowing-fire-8759.firebaseio.com/");
+            $scope.auth = $firebaseSimpleLogin(ref);
+
+            var auth = new FirebaseSimpleLogin(ref, function(error, user) {
+                if (error) {
+                    // an error occurred while attempting login
+                    console.log(error);
+                } 
+                else if (user) {
+                    // user authenticated with Firebase
+
+                    var currentPath = window.location.pathname.split('/').pop();
+
+                    if (currentPath === 'sign-in.html' || currentPath === 'register.html') {
+                        // create a user reference
+                        var userRef = ref.child('users/' + user.uid);
+
+                        // check wheather the user is already registered
+                        userRef.on('value', function(snapshot) {
+                            if(snapshot.val() === null) {
+                                // the user hasn't joined yet
+
+                                // get current date
+                                var date = new Date();
+                                var dd = date.getDate();
+                                var mm = date.getMonth()+1; // january is 0!
+                                var yyyy = date.getFullYear();
+
+                                if(dd < 10) {
+                                    dd = '0' + dd;
+                                } 
+
+                                if(mm < 10) {
+                                    mm= '0' + mm;
+                                } 
+
+                                date = dd+'/'+mm+'/'+yyyy;
+
+                                // write new user name and joined date to database
+                                userRef.child('name').set(user.displayName);
+                                userRef.child('joined').set(date);
+                            } else {
+                                // the user is already registered
+                            }
+                            // redirect to main page
+                            window.location.href = "index.html";
+                        });
+                    }
+                } else {
+                    // user is logged out
+                }
+            });
+        }
+    ]);
+
 stats.controller('driversStandingsController', ['$scope', 'ergastAPIservice' , function ($scope,ergastAPIservice) {
 
     $scope.driversList = [];

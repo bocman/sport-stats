@@ -1,70 +1,108 @@
-<!-- Navbar -->
-
-
 <!-- Content of the page -->
-<div class="container" style="padding-top: 90px">
+<div class="container" style="padding-top: 90px;">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">
-            
-              Driver Profile
-            
-          </h3>
+            <h4>Driver Profile</h4>     
         </div>
-        <div class="row">
-            <div class="col-sm-4 padding-left">
+        <div class="row padding-left padding-right">
+            <div class="col-sm-4">
+                <!-- Driver's name -->
                 <h3 ng-cloak>{{driver.Driver.givenName}}&nbsp;{{driver.Driver.familyName}}</h3>
-                <strong>Country:</strong> {{driver.Driver.nationality}}
-                &nbsp; 
-                <img ng-show="driver" src="img/flags/flags/32/{{driver.Driver.nationality}}.png" alt="{{driver.Driver.nationality}}">   <br/>
-                <strong>Team:</strong> {{driver.Constructors[0].name}}<br/>
-                <strong>Birth:</strong> {{driver.Driver.dateOfBirth}}<br/>
-                <a href="{{driver.Driver.url}}" target="_blank">Biography<span class="glyphicon glyphicon-link" style="margin-right: 3px"></span></a><br>
-                <p ng-cloak>Races: &nbsp;{{DriverData.races}}</p>
-                <p ng-cloak>Finished races: &nbsp;{{DriverData.finishedRaces}}</p>
-                <p ng-cloak>Podiums: &nbsp;{{DriverData.podiums}}</p>
-                <p ng-cloak>Career points: &nbsp;{{DriverData.careerPoints}}</p>
-                <p ng-cloak>Pole positions: &nbsp;{{DriverData.polePositions}}</p>
-                <p ng-cloak>Titles: &nbsp;<span title="{{titleYears}}">{{DriverData.titles}}</span></p>
+                <!-- Driver's country -->
+                <strong>Country:</strong> {{driver.Driver.nationality}}&nbsp;
+                <!-- Driver's country picture -->
+                <img ng-show="driver" src="img/flags/flags/32/{{driver.Driver.nationality}}.png" alt="{{driver.Driver.nationality}}">   
+                <br>
+                <!-- Driver's team -->
+                <strong>Team:</strong> {{driver.Constructors[0].name}}
+                <br>
+                <!-- Driver's birth -->
+                <strong>Birth:</strong> {{driver.Driver.dateOfBirth}}
+                <br>
+                <!-- Driver's biography link-->
+                <a href="{{driver.Driver.url}}" target="_blank">
+                    Biography <span class="glyphicon glyphicon-link"></span>
+                </a>
             </div>
 
             <div class="col-sm-4">
+                <br>
+                <!-- Driver helmete picture -->
                 <img ng-show="driver" src="img/drivers/helmets/{{driver.Driver.driverId}}.jpg" class="img-responsive"/>
             </div>
 
             <div class="col-sm-4">
+                <br>
+                <!-- Driver picture -->
                 <img ng-show="driver" src="img/drivers/{{driver.Driver.driverId}}.jpg" width="75%" class="img-responsive"/> 
             </div>
         </div><!-- /.row -->
+
+        <br>
+
+        <div class="row  padding-left padding-right">
+            <div class="panel panel-default race-stats">
+                <div class="panel-body padding-left padding-right">
+                    <!-- Races -->
+                    <div ng-cloak class="col-md-2 column-border text-center">
+                        <strong>Races:</strong> &nbsp;{{DriverData.races}}
+                    </div>
+                    <!-- Finished races -->
+                    <div ng-cloak class="col-md-2 column-border text-center">
+                        <strong>Finished:</strong> &nbsp;{{DriverData.finishedRaces}}
+                    </div>
+                    <!-- Podiums -->
+                    <div ng-cloak class="col-md-2 column-border text-center">
+                        <strong>Podiums:</strong> &nbsp;{{DriverData.podiums}}
+                    </div>
+                    <!-- Carrer points -->
+                    <div ng-cloak class="col-md-2 column-border text-center">
+                        <strong>Career points:</strong> &nbsp;{{DriverData.careerPoints}}
+                    </div>
+                    <!-- Pole positions -->    
+                    <div ng-cloak class="col-md-2 column-border text-center">
+                        <strong>Pole positions:</strong> &nbsp;{{DriverData.polePositions}}
+                    </div>
+                    <!-- Titles -->
+                    <div ng-cloak class="col-md-2 text-center">
+                        <strong>Titles:</strong> &nbsp;<span title="{{titleYears}}">{{DriverData.titles}}</span>
+                    </div>
+                </div><!-- /.panel-body -->
+            </div><!-- /.panel -->
+        </div><!-- /.row -->
     </div><!-- /.well -->
 
-    <!-- TROPHY CABINET -->
+    <!-- Trophy cabinet -->
     <div class="panel panel-default">
-    <div class="panel-heading">
-        <h4 class="panel-title">Trophy Cabinet</h4>
-    </div>
-        <div class="row">
-          <br>
-          <div class="col-md-4"><img class="trophy" src="img/icons/Trophy-gold-icon-96.png" alt="" ></div>
-          <div class="col-md-4"><img src="img/icons/Trophy-silver-icon-96.png" alt="" class="trophy"></div>
-          <div class="col-md-4"><img src="img/icons/Trophy-bronze-icon-96.png" alt="" class="trophy"></div>
-
+        <div class="panel-heading">
+            <h4 class="panel-title">Trophy Cabinet</h4>
         </div>
-
         <div class="row">
-         
-          <div class="col-md-4"><strong><p class="places" ng-cloak>{{DriverData.firstPlaces}}</p></strong></div>
-          <div class="col-md-4"><p class="places" ng-cloak>{{DriverData.secondPlaces}}</p></div>
-          <div class="col-md-4"><p class="places" ng-cloak>{{DriverData.thirdPlaces}}</p></div>
-
+            <br>
+            <!-- First place finish -->
+            <div class="col-md-4">
+                <img class="trophy" src="img/icons/Trophy-gold-icon-96.png" alt="">
+                <br>
+                <p class="places" ng-cloak>{{DriverData.firstPlaces}}</p>
+            </div>
+            <!-- Second place finish -->
+            <div class="col-md-4">
+                <img src="img/icons/Trophy-silver-icon-96.png" alt="" class="trophy">
+                <br>
+                <p class="places" ng-cloak>{{DriverData.secondPlaces}}</p>
+            </div>
+            <!-- Third place finish -->
+            <div class="col-md-4">
+                <img src="img/icons/Trophy-bronze-icon-96.png" alt="" class="trophy">
+                <br>
+                <p class="places" ng-cloak>{{DriverData.thirdPlaces}}</p>
+            </div>
         </div>
-
     </div>
 
-
-    
-
+    <!-- Div for responsive table -->
     <div class="table-responsive">
+        <!-- Results table -->
         <table class="table table-striped table-bordered">
             <thead>
                 <tr><th colspan="5">Formula 1 2013 Results</th></tr>
@@ -78,22 +116,27 @@
             </thead>
             <tbody>
                 <tr ng-repeat="race in races | filter: searchFilter">
-                    <td style="vertical-align:middle">{{race.round}}</td>
-                    <td style="vertical-align:middle">
-                        <a href="#/races/{{race.round}}" ng-cloak>
-                            <img src="img/flags/races/flags/32/{{race.Circuit.Location.country}}.png" style="margin-right: 8px" >{{race.raceName}}
+                    <!-- Race round -->
+                    <td>{{race.round}}</td>
+                    <!-- Race location -->
+                    <td ng-cloak>
+                        <a href="#/races/{{race.round}}">
+                            <!-- Location country flag -->
+                            <img src="img/flags/races/flags/32/{{race.Circuit.Location.country}}.png">{{race.raceName}}
                         </a>
                     </td>
-                    <td style="vertical-align:middle" ng-cloak>{{race.Results[0].Constructor.name}}</td>
-                    <td style="vertical-align:middle" ng-cloak>
-                        <span class="badge" ng-cloak>{{race.Results[0].grid}}</span>
+                    <!-- Drivers team -->
+                    <td ng-cloak>{{race.Results[0].Constructor.name}}</td>
+                    <!-- Grid -->
+                    <td ng-cloak>
+                        <span class="badge">{{race.Results[0].grid}}</span>
                     </td>
-                    <td style="vertical-align:middle">
-                        <span class="badge" ng-cloak>{{race.Results[0].position}}</span>
+                    <!-- Race finish position -->
+                    <td ng-cloak>
+                        <span class="badge">{{race.Results[0].position}}</span>
                     </td>
                 </tr>
             </tbody>
         </table>
-    </div>
+    </div><!-- /.div-table-responsive -->
 </div><!-- /.container -->
-
