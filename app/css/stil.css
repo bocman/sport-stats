@@ -351,3 +351,9 @@ div.row > div.col-sm-4 > a > span {
   content: "";
   padding: 0;
 }
+
+#fastest_laps_chart{
+  width   : 100%;
+  height    : 500px;
+  font-size : 11px
+}

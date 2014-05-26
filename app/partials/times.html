@@ -1,7 +1,7 @@
 
 
 <!-- Content of the page -->
-<div class="container" style="padding-top: 90px">
+<div class="container" style="padding-top: 90px" ng-app="stats">
 
     <!-- SELECT SEASON, RACE, DRIVER -->
     <div class="panel panel-default">
@@ -38,7 +38,7 @@
     <!-- LLAP TIMES -->
     <div class="panel panel-default">
     <div class="panel-heading">
-        <h4 class="panel-title">Lap times</h4>
+        <h4 class="panel-title">Lap Times</h4>
     </div>
         <div class="row">
           <br>
@@ -58,35 +58,64 @@
 
     </div>
     
+<!-- FASTEST LAPS -->
+    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">Fastest Laps</h4>
+    </div>
+       <div>
+        <div  class="table-responsive">
+          <table  class="table table-striped table-bordered">
+              <thead>
+                  <tr>
+                      <th>Position</th>
+                      <th>Driver</th>
+                      <th>Race position</th>
+                      <th>Lap</th>
+                      <th>Time</th>
+                  </tr>
+              </thead>
+              <tbody id="table_fastest_laps">
+                  
+              </tbody>
+          </table>
+        </div></div>
+        <div id="fastest_laps_chart"  style="width: 100%; height: 400px; background-color: #FFFFFF;" ></div>
+
+    </div>
+
     <!-- PIT STOPS -->
     <div class="panel panel-default">
     <div class="panel-heading">
-        <h4 class="panel-title">Pit stops</h4>
+        <h4 class="panel-title">Pit Stops</h4>
     </div>
-        <div class="row">
-          <br>
-          <div class="col-md-4"></div>
-          <div class="col-md-4"></div>
-          <div class="col-md-4"></div>
+      <div>
+        <div class="table-responsive">
+          <table  class="table table-striped table-bordered">
+              <thead>
+                  <tr>
+                      <th>Position</th>
+                      <th>Driver</th>
+                      <th>Lap</th>
+                      <th>Stop</th>
+                      <th>Duration</th>
+                  </tr>
+              </thead>
+              <tbody id="table_pit_stops">
+                 
+              </tbody>
+          </table>
+      </div>
 
-        </div>
-
-        <div class="row">
-         
-          <div class="col-md-4"><p class="places"></p></div>
-          <div class="col-md-4"><p class="places"></p></div>
-          <div class="col-md-4"><p class="places"></p></div>
-
-        </div>
+      <div id="pit_stops_chart" style="width: 100%; height: 400px; background-color: #FFFFFF;" ></div>
+          
 
     </div>
 
-    <div class="table-responsive">
-
-        
-
-        
     </div>
+
+    
+
 </div><!-- /.container -->
 
 <script src="js/scripts/trophy-icons.js"></script>
@@ -94,9 +123,14 @@
 
     $(function(){
 
+        
+
+        var race = 1;
+        var season = 2011;
         var rounds = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10,", "11",
                         "12", "13", "14", "15", "16", "17", "18", "19"
                      ];
+
         var races = [
         "Australian Grand Prix",
         "Malaysian Grand Prix", 
@@ -120,6 +154,8 @@
 
         ];
 
+
+
         var current_year = new Date().getFullYear();
         for(var i=2011; i<=current_year; i++){
             $('#select_season').append($('<option>', {
@@ -140,8 +176,182 @@
         }
 
         $('#select_race').on('change', function(){
-                    alert("drama");
+                    race = $('#select_race').val();
+                    season = $("#select_season").val();
+                    //console.log(race);
+                    //console.log(season);
+
+
+                    alert("Season: " + season + "   Race: " + race);
+                   
                 });
+
+
+        //fastest laps za 2011, Australian GP prvi prikaz strani
+        $.when(
+        $.ajax({
+            type: 'GET',
+            url:'fastest_laps.php',
+            contentType: "application/json",
+            dataType: 'json',
+            success: function(json) {
+                data = json;
+                var chartData = [];
+                console.log(data[0].FirstName);
+                for(var i=0; i<data.length; i++){
+                  $('#table_fastest_laps').append('<tr>' + '<td style="vertical-align:middle">'+(i+1)+'.'+'<td style="vertical-align:middle">' + data[i].FirstName + " " + data[i].LastName + "</td>" + '<td style="vertical-align:middle">' + data[i].Position + "</td>" + '<td style="vertical-align:middle">' + data[i].Lap+ "</td>" + '<td style="vertical-align:middle">' + data[i].Time + "</td>"  +"</tr>");
+                  var driver = {
+                    driverName: data[i].FirstName + " " + data[i].LastName,
+                    time: data[i].Time,
+                    milliseconds: data[i].Milliseconds,
+                    code: data[i].Code
+                  };
+                  chartData.push(driver);
+                }
+                  
+                  
+                  //graf fastest laps
+                   // CHART
+                   AmCharts.makeChart("fastest_laps_chart",
+                {
+                  "type": "serial",
+                  "pathToImages": "http://cdn.amcharts.com/lib/3/images/",
+                  "categoryField": "code",
+                  "startDuration": 5,
+                  "theme": "light",
+                  "categoryAxis": {
+                    "gridPosition": "start"
+                  },
+                  "trendLines": [],
+                  "graphs": [
+                    {
+                      "balloonText": "[[driverName]]: [[time]]",
+                      "bullet": "round",
+                      "id": "AmGraph-1",
+                      "title": "",
+                      "valueField": "milliseconds"
+                    }
+                  ],
+                  "guides": [],
+                  "valueAxes": [
+                    {
+                      "id": "ValueAxis-1",
+                      "title": "Time (ms)"
+                    }
+                  ],
+                  "allLabels": [],
+                  "balloon": {},
+                  "legend": {
+                    "useGraphSettings": true
+                  },
+                  "titles": [
+                    {
+                      "id": "Title-1",
+                      "size": 15,
+                      "text": "Fastest laps"
+                    }
+                  ],
+                  "dataProvider": chartData
+                }
+              );
+                   
+                    
+
+                
+                },error: function(e) {
+                    console.log(e.message);
+              }
+          }),
+
+            $.ajax({
+            type: 'GET',
+            url:'pit_stops.php',
+            contentType: "application/json",
+            dataType: 'json',
+            success: function(json) {
+                data = json;
+                var dataChart = [];
+                console.log(data[0].FirstName);
+                for(var i=0; i<data.length; i++){
+                  $('#table_pit_stops').append('<tr>' + '<td style="vertical-align:middle">'+(i+1)+'.'+'<td style="vertical-align:middle">' + data[i].FirstName + " " + data[i].LastName + "</td>" + '<td style="vertical-align:middle">' + data[i].Stop + "</td>" + '<td style="vertical-align:middle">' + data[i].Lap+ "</td>" + '<td style="vertical-align:middle">' + data[i].Duration + "</td>"  +"</tr>");
+
+                  var driver = {
+                    driverName : data[i].FirstName + " " + data[i].LastName,
+                    duration : data[i].Duration,
+                    code : data[i].Code,
+                    stop : data[i].Stop
+                  };
+
+                  dataChart.push(driver);
+
+                }
+
+
+                //chart, pit Stops
+                 AmCharts.makeChart("pit_stops_chart",
+            {
+          "type": "serial",
+          "pathToImages": "http://cdn.amcharts.com/lib/3/images/",
+          "categoryField": "code",
+          "startDuration": 5,
+          "categoryAxis": {
+            "gridPosition": "start"
+          },
+          "trendLines": [],
+          "graphs": [
+            {
+              "balloonText": "[[driverName]]: [[duration]] sec.",
+              "fillAlphas": 1,
+              "id": "Fastest pit",
+              "title": "Fastest pit stop",
+              "type": "column",
+              "valueField": "duration"
+            },
+            {
+              "balloonText": "[[driverName]]: [[stop]]",
+              "fillAlphas": 1,
+              "id": "AmGraph-2",
+              "title": "Number of pit stops",
+              "type": "column",
+              "valueField": "stop"
+            }
+          ],
+          "guides": [],
+          "valueAxes": [
+            {
+              "id": "ValueAxis-1",
+              "title": "Duration (sec)"
+            }
+          ],
+          "allLabels": [],
+          "balloon": {},
+          "legend": {
+            "useGraphSettings": true
+          },
+          "titles": [
+            {
+              "id": "Title-1",
+              "size": 15,
+              "text": "Pit stops"
+            }
+          ],
+          "dataProvider": dataChart
+        }
+      );
+          
+              
+               
+             },error: function(e) {
+                    console.log(e.message);
+              }
+
+                
+
+            })
+        )
+
+
+
 
         
 
@@ -180,9 +390,7 @@
                         ));
                 } 
 
-                $('#select_race').on('change', function(){
-                   //
-                });
+                
              } 
             });   
                 

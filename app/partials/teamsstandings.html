@@ -91,6 +91,7 @@
                 var chart;
                 // SERIAL CHART
                 chart = new AmCharts.AmSerialChart();
+                chart.startDuration = 5;
                 chart.dataProvider = chartData;
                 chart.categoryField = "teamName";
                 // the following two lines makes chart 3D
