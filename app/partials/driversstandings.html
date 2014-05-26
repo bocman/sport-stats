@@ -78,6 +78,7 @@
                     var chart;
                     // Serial chart
                     chart = new AmCharts.AmSerialChart();
+                    chart.startDuration = 5;
                     chart.dataProvider = chartData;
                     chart.categoryField = "driverName";
                     // The following two lines makes chart 3D
@@ -99,6 +100,7 @@
 
                     // Graph
                     var graph = new AmCharts.AmGraph();
+                    
                     graph.valueField = "points";
                     graph.colorField = "color";
                     graph.balloonText = "<span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>";
