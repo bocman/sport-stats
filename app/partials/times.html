@@ -35,49 +35,35 @@
     </div>
      
 
-    <!-- LLAP TIMES -->
-    <div class="panel panel-default">
-    <div class="panel-heading">
-        <h4 class="panel-title">Lap Times</h4>
-    </div>
-        <div class="row">
-          <br>
-          <div class="col-md-4"></div>
-          <div class="col-md-4"></div>
-          <div class="col-md-4"></div>
-
-        </div>
-
-        <div class="row">
-         
-          <div class="col-md-4"><p class="places"></p></div>
-          <div class="col-md-4"><p class="places"></p></div>
-          <div class="col-md-4"><p class="places"></p></div>
-
-        </div>
-
-    </div>
-
     <!-- HEAD TO HEAD -->
     <div class="panel panel-default">
     <div class="panel-heading">
         <h4 class="panel-title">Lap Times Head To Head</h4>
     </div>
-        <div class="row">
-          <br>
-          <div class="col-md-4"></div>
-          <div class="col-md-4"></div>
-          <div class="col-md-4"></div>
+        <div class="table-responsive">
+          <table  class="table table-striped table-bordered">
+              <thead>
+                  <tr>
+                      <th>LAP</th>
+                      <!-- DRIVER 1 -->
+                      <th>
+                        <select name="" id="driver1"></select>
 
-        </div>
+                      </th>
+                      <!-- DRIVER 2 -->
+                      <th>
+                        <select name="" id="driver2"></select>
 
-        <div class="row">
-         
-          <div class="col-md-4"><p class="places"></p></div>
-          <div class="col-md-4"><p class="places"></p></div>
-          <div class="col-md-4"><p class="places"></p></div>
-
-        </div>
+                      </th>
+                      <th>+/-</th>
+                      <!-- <th>GAP</th> -->
+                  </tr>
+                  <tbody id="head_to_head"></tbody>
+              </thead>
+              <tbody id="head_to_head">
+                 
+              </tbody>
+          </table>
 
     </div>
     
@@ -147,7 +133,34 @@
 
     $(function(){
 
-        
+        //drivers for first race in 2011
+        var drivers = [
+        {driverId: 1, name : "Lewis Hamilton"},
+        {driverId: 2, name : "Heidfeld Nick"},
+        {driverId: 3, name : "Nico Rosberg"},
+        {driverId: 4, name : "Fernando Alonso"},
+        {driverId: 5, name : "Heikki Kovalainen"},
+        {driverId: 10, name : "Timo Glock"},
+        {driverId: 13, name : "Felipe Massa"},
+        {driverId: 15, name : "Jarno Trulli"},
+        {driverId: 16, name : "Adrian Sutil"},
+        {driverId: 17, name : "Mark Webber"},
+
+        {driverId: 18, name : "Jenson Button"},
+        {driverId: 20, name : "Sebastian Vettel"},
+        {driverId: 22, name : "Rubens Barrichello"},
+        {driverId: 30, name : "Michael Schumacher"},
+        {driverId: 67, name : "Sebastien Buemi"},
+        {driverId: 153, name : "Jaime Alguersuari"},
+        {driverId: 155, name : "Kamui Kobayashi"},
+        {driverId: 808, name : "Vitaly Petrov"},
+        {driverId: 813, name : "Pastor Maldonado"},
+        {driverId: 814, name : "Paul di Resta"},
+
+        {driverId: 815, name : "Sergio Perez"},
+        {driverId: 816, name : "Jerome d'Ambrosio"}
+
+        ];
 
         var race = 1;
         var season = 2011;
@@ -199,13 +212,40 @@
             ));
         }
 
+        for(var k = 0; k<drivers.length; k++){
+          $('#driver1').append(
+              $('<option>',{
+                value : drivers[k].driverId,
+                text : drivers[k].name
+                }
+                )
+            );
+        }
+
+        for(var h = drivers.length-1; h>=0; h-- ){
+          $('#driver2').append(
+              $('<option>',{
+                value : drivers[h].driverId,
+                text : drivers[h].name
+                }
+                )
+            );
+        }
+
+
+
+        var year = $('#select_season').val();
+        var round = $('#select_race').val();
+
         $('#select_race').on('change', function(){
                     race = $('#select_race').val();
                     season = $("#select_season").val();
                     //console.log(race);
                     //console.log(season);
 
-
+                   $('#driver1').empty();
+                   $('#driver2').empty();
+                   $('#head_to_head').empty();
                    $('#table_fastest_laps').empty();
                    $('#fastest_laps_chart').empty();
 
@@ -298,7 +338,7 @@
                 data = json;
                 //console.log("Pit stops: " +data.length);
                 var dataChart = [];
-                console.log(data[0].FirstName);
+              //  console.log(data[0].FirstName);
                 for(var i=0; i<data.length; i++){
                   $('#table_pit_stops').append('<tr>' + '<td style="vertical-align:middle">'+(i+1)+'.'+'<td style="vertical-align:middle">' + data[i].FirstName + " " + data[i].LastName + "</td>" + '<td style="vertical-align:middle">' + data[i].Stop + "</td>" + '<td style="vertical-align:middle">' + data[i].Lap+ "</td>" + '<td style="vertical-align:middle">' + data[i].Duration + "</td>"  +"</tr>");
 
@@ -375,8 +415,98 @@
 
                 
 
+            }),
+            
+            $.ajax({
+            type: 'GET',
+            url:'head_to_head_select_year.php',
+            contentType: "application/json",
+            data: {season : season, round: race},
+            dataType: 'json',
+            success: function(json) {
+                data1 = json['drivers'];
+                data2 = json['laptimes1'];
+                data3 = json['laptimes2'];
+                console.log(data2.length);
+                console.log(data3.length);
+                console.log(data2[0].Milliseconds);
+                
+                $('#driver1').empty();
+                $('#driver2').empty();
+
+                for(var k = 0; k<data1.length; k++){
+                $('#driver1').append(
+                    $('<option>',{
+                      value : data1[k].driverId,
+                      text : data1[k].FirstName + " " + data1[k].LastName
+                      }
+                      )
+                  );
+              }
+
+                for(var h = data1.length-1; h>=0; h-- ){
+                  $('#driver2').append(
+                      $('<option>',{
+                        value : data1[h].driverId,
+                        text : data1[h].FirstName + " " + data1[h].LastName
+                        }
+                        )
+                    );
+                }
+
+
+              $('#head_to_head').empty();
+              
+               var razlikaDolzine;
+               var plusMinus;
+               var velikostManjse;
+
+              //če je prvi array krajši od drugega
+               if(data2.length > data3.length){
+                velikostManjse = data3.length;
+                razlikaDolzine = data2.length - data3.length;
+                //sprehod čez krajšega
+                for(var i=0; i<data3.length; i++){
+                  if(data2[i].Milliseconds < data3[i].Milliseconds){
+                    plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds) / 1000;
+                    $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:green;">' + data2[i].Time+ '</td><td style="color:red;">' + data3[i].Time+ '</td><td style="color:green;">'+plusMinus+'</td></tr>')
+                  }else if(data2[i].Milliseconds > data3[i].Milliseconds){
+                      plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds)/1000;
+                      $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:red;">' + data2[i].Time+ '</td><td style="color:green;">' + data3[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
+                  }else{
+                      plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds) / 1000;
+                      $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:green;">' + data2[i].Time+ '</td><td style="color:green;">' + data3[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
+                  }
+
+
+                }
+                //sprehod čed daljšega, od zadnjega krajšega naprej do zadnjega v daljšem
+                for(var j=velikostManjse; j<=(velikostManjse+razlikaDolzine)-1; j++){
+                  $('#head_to_head').append('<tr><td>'+data2[j].Lap+'</td><td style="color:green;">' + data2[j].Time+ '</td><td>' + '- - -'+ '</td><td>'+'- -'+'</td></tr>')
+                }
+
+               }else if(data2.length < data3.length){
+                razlikaDolzine = data3.length - data2.length;
+
+               }else{
+
+               }
+                
+                
+
+                
+              
+               
+             },error: function(e) {
+                    console.log(e.message);
+              }
+
+                
+
             })
           )
+            
+            
                    
                 });
 
@@ -543,7 +673,95 @@
 
                 
 
-            })
+            }),
+
+            //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            /*
+            fake = [1,2,3,4,5,6,7,8,9,10];
+            fake2 = [2,3,5,61,2,4,7,9,14];
+            var razlika;
+            var vsota;
+
+            for(var i=0; i<fake.length; i++){
+              if(fake[i] < fake2[i]){
+                razlika = fake2[i] - fake[i];
+                $('#head_to_head').append('<tr><td>'+i+'</td><td style="color:green;">' + fake[i]+ '</td><td style="color:red;">' + fake2[i]+ '</td><td>'+razlika+'</td></tr>')
+              }else if(fake[i] > fake2[i]){
+                razlika = fake[i] - fake2[i];
+                $('#head_to_head').append('<tr><td>'+i+'</td><td style="color:red;">' + fake[i]+ '</td><td style="color:green;">' + fake2[i]+ '</td><td>'+razlika+'</td></tr>')
+              }else{
+                razlika = fake2[i] - fake[i];
+                $('#head_to_head').append('<tr><td>'+i+'</td><td style="color:green;">' + fake[i]+ '</td><td style="color:green;">' + fake2[i]+ '</td><td>'+razlika+'</td></tr>')
+              }
+            }
+
+            */
+
+            $.ajax({
+            type: 'GET',
+            url:'head_to_head.php',
+            contentType: "application/json",
+            dataType: 'json',
+            success: function(json) {
+               var d1 = json['data1'];
+               var d2 = json['data2'];
+
+               //console.log(d1[12].Time + " " + d1[12].Milliseconds);
+               //console.log(d2[12].Time + " " + d2[12].Milliseconds);
+
+               var razlikaDolzine;
+               var plusMinus;
+               var velikostManjse;
+
+              //če je prvi array krajši od drugega
+               if(d1.length > d2.length){
+                velikostManjse = d2.length;
+                razlikaDolzine = d1.length - d2.length;
+                //sprehod čez krajšega
+                for(var i=0; i<d2.length; i++){
+                  if(d1[i].Milliseconds < d2[i].Milliseconds){
+                    plusMinus = (d1[i].Milliseconds - d2[i].Milliseconds) / 1000;
+                    $('#head_to_head').append('<tr><td>'+d1[i].Lap+'</td><td style="color:green;">' + d1[i].Time+ '</td><td style="color:red;">' + d2[i].Time+ '</td><td style="color:green;">'+plusMinus+'</td></tr>')
+                  }else if(d1[i].Milliseconds > d2[i].Milliseconds){
+                      plusMinus = (d1[i].Milliseconds - d2[i].Milliseconds)/1000;
+                      $('#head_to_head').append('<tr><td>'+d1[i].Lap+'</td><td style="color:red;">' + d1[i].Time+ '</td><td style="color:green;">' + d2[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
+                  }else{
+                      plusMinus = (d1[i].Milliseconds - d2[i].Milliseconds) / 1000;
+                      $('#head_to_head').append('<tr><td>'+d1[i].Lap+'</td><td style="color:green;">' + d1[i].Time+ '</td><td style="color:green;">' + d2[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
+                  }
+
+
+                }
+                //sprehod čed daljšega, od zadnjega krajšega naprej do zadnjega v daljšem
+                for(var j=velikostManjse; j<=(velikostManjse+razlikaDolzine)-1; j++){
+                  $('#head_to_head').append('<tr><td>'+d1[j].Lap+'</td><td style="color:green;">' + d1[j].Time+ '</td><td>' + '- - -'+ '</td><td>'+'- -'+'</td></tr>')
+                }
+
+               }else if(d1.length < d2.length){
+                razlikaDolzine = d2.length - d1.length;
+
+               }else{
+
+               }
+              
+               
+                
+
+                
+                
+                
+                   
+                    
+
+                
+                },error: function(e) {
+                    console.log(e.message);
+              }
+          })
+
+            //fastests laps all 
+            
         )
 
 
@@ -683,7 +901,7 @@
             success: function(json) {
                 data = json;
                 var dataChart = [];
-                console.log(data[0].FirstName);
+               // console.log(data[0].FirstName);
                 for(var i=0; i<data.length; i++){
                   $('#table_pit_stops').append('<tr>' + '<td style="vertical-align:middle">'+(i+1)+'.'+'<td style="vertical-align:middle">' + data[i].FirstName + " " + data[i].LastName + "</td>" + '<td style="vertical-align:middle">' + data[i].Stop + "</td>" + '<td style="vertical-align:middle">' + data[i].Lap+ "</td>" + '<td style="vertical-align:middle">' + data[i].Duration + "</td>"  +"</tr>");
 
@@ -752,6 +970,95 @@
             }
           );
           
+              
+               
+             },error: function(e) {
+                    console.log(e.message);
+              }
+
+                
+
+            }),
+
+            //ob izbiri sezone, poišče dirkače za to sezono in dirko ter napolni tabelo HEAD TO HEAD
+            $.ajax({
+            type: 'GET',
+            url:'head_to_head_select_year.php',
+            contentType: "application/json",
+            data: {season : season, round: race},
+            dataType: 'json',
+            success: function(json) {
+                data1 = json['drivers'];
+                data2 = json['laptimes1'];
+                data3 = json['laptimes2'];
+                console.log(data2.length);
+                console.log(data3.length);
+                console.log(data2[0].Milliseconds);
+                
+                $('#driver1').empty();
+                $('#driver2').empty();
+
+                for(var k = 0; k<data1.length; k++){
+                $('#driver1').append(
+                    $('<option>',{
+                      value : data1[k].driverId,
+                      text : data1[k].FirstName + " " + data1[k].LastName
+                      }
+                      )
+                  );
+              }
+
+                for(var h = data1.length-1; h>=0; h-- ){
+                  $('#driver2').append(
+                      $('<option>',{
+                        value : data1[h].driverId,
+                        text : data1[h].FirstName + " " + data1[h].LastName
+                        }
+                        )
+                    );
+                }
+
+
+              $('#head_to_head').empty();
+              
+               var razlikaDolzine;
+               var plusMinus;
+               var velikostManjse;
+
+              //če je prvi array krajši od drugega
+               if(data2.length > data3.length){
+                velikostManjse = data3.length;
+                razlikaDolzine = data2.length - data3.length;
+                //sprehod čez krajšega
+                for(var i=0; i<data3.length; i++){
+                  if(data2[i].Milliseconds < data3[i].Milliseconds){
+                    plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds) / 1000;
+                    $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:green;">' + data2[i].Time+ '</td><td style="color:red;">' + data3[i].Time+ '</td><td style="color:green;">'+plusMinus+'</td></tr>')
+                  }else if(data2[i].Milliseconds > data3[i].Milliseconds){
+                      plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds)/1000;
+                      $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:red;">' + data2[i].Time+ '</td><td style="color:green;">' + data3[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
+                  }else{
+                      plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds) / 1000;
+                      $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:green;">' + data2[i].Time+ '</td><td style="color:green;">' + data3[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
+                  }
+
+
+                }
+                //sprehod čed daljšega, od zadnjega krajšega naprej do zadnjega v daljšem
+                for(var j=velikostManjse; j<=(velikostManjse+razlikaDolzine)-1; j++){
+                  $('#head_to_head').append('<tr><td>'+data2[j].Lap+'</td><td style="color:green;">' + data2[j].Time+ '</td><td>' + '- - -'+ '</td><td>'+'- -'+'</td></tr>')
+                }
+
+               }else if(data2.length < data3.length){
+                razlikaDolzine = data3.length - data2.length;
+
+               }else{
+
+               }
+                
+                
+
+                
               
                
              },error: function(e) {
