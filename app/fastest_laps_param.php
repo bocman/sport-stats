@@ -1,11 +1,24 @@
 <?php 
 
-	include 'database.php';
-	
-	$replace = array("é", "ô", "ä");
+include 'database.php';
+
+if(isset($_GET['round']) && isset($_GET['year'])){
+	$round = trim($_GET['round']);
+	$year = trim($_GET['year']);
+
 	$data = array();
+	$raceId;
 	$mysqli = new mysqli($localhost, $user, $password, $database);
-	$query = "
+	$query1 = "SELECT raceId FROM races WHERE year='$year' AND round='$round' ";
+
+	$result1 = $mysqli->query($query1) or die($msqli->error.__LINE__);
+	if($result1->num_rows > 0){
+		while($row = $result1->fetch_assoc()){
+			$raceId = utf8_encode($row['raceId']);		
+		}
+	}
+
+	$query2 = "
 			SELECT
 			drivers.forename, drivers.surname, drivers.code,laptimes.*
 			FROM
@@ -26,7 +39,7 @@
 							from
 								laptimes
 							where
-								laptimes.raceId = 841
+								laptimes.raceId = '$raceId'
 							group by
 								raceId
 							,	driverId
@@ -41,9 +54,10 @@
 			    laptimes.driverId
 
 	";
-	$result = $mysqli->query($query) or die($msqli->error.__LINE__);
-	if($result->num_rows > 0){
-		while($row = $result->fetch_assoc()){
+
+	$result2 = $mysqli->query($query2) or die($msqli->error.__LINE__);
+	if($result2->num_rows > 0){
+		while($row = $result2->fetch_assoc()){
 			$data[] = array("FirstName" => utf8_encode($row['forename']), "LastName" => utf8_encode($row['surname']), "Position" => $row['position'], "Lap" => $row['lap'], "Time" => $row['time'], "Milliseconds" => $row['milliseconds'], "Code" => $row['code']);
 		}
 	}
@@ -51,6 +65,8 @@
 		mysqli_close($mysqli);
 
 	echo json_encode($data);
+
+}
 
 
  ?>
