@@ -66,6 +66,8 @@
           </table>
 
     </div>
+    </div>
+    <br>
     
 <!-- FASTEST LAPS -->
     <div class="panel panel-default">
@@ -92,7 +94,7 @@
         <div id="fastest_laps_chart"  style="width: 100%; height: 400px; background-color: #FFFFFF;" ></div>
 
     </div>
-
+    <br>
     <!-- PIT STOPS -->
     <div class="panel panel-default">
     <div class="panel-heading">
@@ -427,9 +429,8 @@
                 data1 = json['drivers'];
                 data2 = json['laptimes1'];
                 data3 = json['laptimes2'];
-                console.log(data2.length);
-                console.log(data3.length);
-                console.log(data2[0].Milliseconds);
+                 console.log(data2.length + " " + data2[0].Milliseconds);
+                console.log(data3.length + " " + data3[0].Milliseconds);
                 
                 $('#driver1').empty();
                 $('#driver2').empty();
@@ -467,13 +468,17 @@
                 razlikaDolzine = data2.length - data3.length;
                 //sprehod čez krajšega
                 for(var i=0; i<data3.length; i++){
-                  if(data2[i].Milliseconds < data3[i].Milliseconds){
+                  if(Number(data2[i].Milliseconds) < Number(data3[i].Milliseconds)){
                     plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds) / 1000;
+                    console.log(data2[0].Milliseconds < data3[0].Milliseconds);
+                    console.log(data2[0].Milliseconds + " " +  data3[0].Milliseconds);
                     $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:green;">' + data2[i].Time+ '</td><td style="color:red;">' + data3[i].Time+ '</td><td style="color:green;">'+plusMinus+'</td></tr>')
-                  }else if(data2[i].Milliseconds > data3[i].Milliseconds){
+                  }
+                  if(Number(data2[i].Milliseconds) > Number(data3[i].Milliseconds)){
                       plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds)/1000;
                       $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:red;">' + data2[i].Time+ '</td><td style="color:green;">' + data3[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
-                  }else{
+                  }
+                  if(Number(data2[i].Milliseconds) == Number(data3[i].Milliseconds)){
                       plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds) / 1000;
                       $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:green;">' + data2[i].Time+ '</td><td style="color:green;">' + data3[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
                   }
@@ -486,9 +491,58 @@
                 }
 
                }else if(data2.length < data3.length){
-                razlikaDolzine = data3.length - data2.length;
+                velikostManjse = data2.length;
+                      razlikaDolzine = data3.length - data2.length;
+                      //sprehod čez krajšega
+                      for(var i=0; i<data2.length; i++){
+                        if(Number(data2[i].Milliseconds) < Number(data3[i].Milliseconds)){
+                          plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds) / 1000;
+                          console.log(data2[0].Milliseconds < data3[0].Milliseconds);
+                          console.log(data2[0].Milliseconds + " " +  data3[0].Milliseconds);
+                          $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:green;">' + data2[i].Time+ '</td><td style="color:red;">' + data3[i].Time+ '</td><td style="color:green;">'+plusMinus+'</td></tr>')
+                        }
+                        if(Number(data2[i].Milliseconds) > Number(data3[i].Milliseconds)){
+                            plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds)/1000;
+                            $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:red;">' + data2[i].Time+ '</td><td style="color:green;">' + data3[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
+                        }
+                        if(Number(data2[i].Milliseconds) == Number(data3[i].Milliseconds)){
+                            plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds) / 1000;
+                            $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:green;">' + data2[i].Time+ '</td><td style="color:green;">' + data3[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
+                        }
+
+
+                      }
+                      //sprehod čed daljšega, od zadnjega krajšega naprej do zadnjega v daljšem
+                      for(var j=velikostManjse; j<=(velikostManjse+razlikaDolzine)-1; j++){
+                       $('#head_to_head').append('<tr><td>'+data3[j].Lap+'</td><td>' +'- - -'+ '</td><td style="color:green;">' + data3[j].Time+ '</td><td>'+'- -'+'</td></tr>');
+                      }
 
                }else{
+                  velikostManjse = data2.length;
+                      razlikaDolzine = data2.length - data3.length;
+                      //sprehod čez krajšega
+                      for(var i=0; i<data2.length; i++){
+                        if(Number(data2[i].Milliseconds) < Number(data3[i].Milliseconds)){
+                          plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds) / 1000;
+                          console.log(data2[0].Milliseconds < data3[0].Milliseconds);
+                          console.log(data2[0].Milliseconds + " " +  data3[0].Milliseconds);
+                          $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:green;">' + data2[i].Time+ '</td><td style="color:red;">' + data3[i].Time+ '</td><td style="color:green;">'+plusMinus+'</td></tr>')
+                        }
+                        if(Number(data2[i].Milliseconds) > Number(data3[i].Milliseconds)){
+                            plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds)/1000;
+                            $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:red;">' + data2[i].Time+ '</td><td style="color:green;">' + data3[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
+                        }
+                        if(Number(data2[i].Milliseconds) == Number(data3[i].Milliseconds)){
+                            plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds) / 1000;
+                            $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:green;">' + data2[i].Time+ '</td><td style="color:green;">' + data3[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
+                        }
+
+
+                      }
+                      //sprehod čed daljšega, od zadnjega krajšega naprej do zadnjega v daljšem
+                      for(var j=velikostManjse; j<=(velikostManjse+razlikaDolzine)-1; j++){
+                        $('#head_to_head').append('<tr><td>'+data2[j].Lap+'</td><td style="color:green;">' + data2[j].Time+ '</td><td>' + '- - -'+ '</td><td>'+'- -'+'</td></tr>')
+                      }
 
                }
                 
@@ -720,14 +774,14 @@
                 razlikaDolzine = d1.length - d2.length;
                 //sprehod čez krajšega
                 for(var i=0; i<d2.length; i++){
-                  if(d1[i].Milliseconds < d2[i].Milliseconds){
+                  if(Number(d1[i].Milliseconds) < Number(d2[i].Milliseconds)){
                     plusMinus = (d1[i].Milliseconds - d2[i].Milliseconds) / 1000;
                     $('#head_to_head').append('<tr><td>'+d1[i].Lap+'</td><td style="color:green;">' + d1[i].Time+ '</td><td style="color:red;">' + d2[i].Time+ '</td><td style="color:green;">'+plusMinus+'</td></tr>')
-                  }else if(d1[i].Milliseconds > d2[i].Milliseconds){
+                  }else if(Number(d1[i].Milliseconds) > Number(d2[i].Milliseconds)){
                       plusMinus = (d1[i].Milliseconds - d2[i].Milliseconds)/1000;
                       $('#head_to_head').append('<tr><td>'+d1[i].Lap+'</td><td style="color:red;">' + d1[i].Time+ '</td><td style="color:green;">' + d2[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
                   }else{
-                      plusMinus = (d1[i].Milliseconds - d2[i].Milliseconds) / 1000;
+                      plusMinus = (Number(d1[i].Milliseconds) - Number(d2[i].Milliseconds)) / 1000;
                       $('#head_to_head').append('<tr><td>'+d1[i].Lap+'</td><td style="color:green;">' + d1[i].Time+ '</td><td style="color:green;">' + d2[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
                   }
 
@@ -739,32 +793,195 @@
                 }
 
                }else if(d1.length < d2.length){
+                velikostManjse = d1.length;
                 razlikaDolzine = d2.length - d1.length;
+                //sprehod čez krajšega
+                for(var i=0; i<d1.length; i++){
+                  if(Number(d1[i].Milliseconds) < Number(d2[i].Milliseconds)){
+                    plusMinus = (d1[i].Milliseconds - d2[i].Milliseconds) / 1000;
+                    $('#head_to_head').append('<tr><td>'+d1[i].Lap+'</td><td style="color:green;">' + d1[i].Time+ '</td><td style="color:red;">' + d2[i].Time+ '</td><td style="color:green;">'+plusMinus+'</td></tr>')
+                  }else if(Number(d1[i].Milliseconds) > Number(d2[i].Milliseconds)){
+                      plusMinus = (d1[i].Milliseconds - d2[i].Milliseconds)/1000;
+                      $('#head_to_head').append('<tr><td>'+d1[i].Lap+'</td><td style="color:red;">' + d1[i].Time+ '</td><td style="color:green;">' + d2[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
+                  }else{
+                      plusMinus = (Number(d1[i].Milliseconds) - Number(d2[i].Milliseconds)) / 1000;
+                      $('#head_to_head').append('<tr><td>'+d1[i].Lap+'</td><td style="color:green;">' + d1[i].Time+ '</td><td style="color:green;">' + d2[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
+                  }
+
+
+                }
+                //sprehod čed daljšega, od zadnjega krajšega naprej do zadnjega v daljšem
+                for(var j=velikostManjse; j<=(velikostManjse+razlikaDolzine)-1; j++){
+                  $('#head_to_head').append('<tr><td>'+d2[j].Lap+'</td><td>' +'- - -'+ '</td><td style="color:green;">' + d2[j].Time+ '</td><td>'+'- -'+'</td></tr>');
+                }
 
                }else{
+                  velikostManjse = d2.length;
+                razlikaDolzine = d1.length - d2.length;
+                //sprehod čez krajšega
+                for(var i=0; i<d2.length; i++){
+                  if(Number(d1[i].Milliseconds) < Number(d2[i].Milliseconds)){
+                    plusMinus = (d1[i].Milliseconds - d2[i].Milliseconds) / 1000;
+                    $('#head_to_head').append('<tr><td>'+d1[i].Lap+'</td><td style="color:green;">' + d1[i].Time+ '</td><td style="color:red;">' + d2[i].Time+ '</td><td style="color:green;">'+plusMinus+'</td></tr>')
+                  }else if(Number(d1[i].Milliseconds) > Number(d2[i].Milliseconds)){
+                      plusMinus = (d1[i].Milliseconds - d2[i].Milliseconds)/1000;
+                      $('#head_to_head').append('<tr><td>'+d1[i].Lap+'</td><td style="color:red;">' + d1[i].Time+ '</td><td style="color:green;">' + d2[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
+                  }else{
+                      plusMinus = (Number(d1[i].Milliseconds) - Number(d2[i].Milliseconds)) / 1000;
+                      $('#head_to_head').append('<tr><td>'+d1[i].Lap+'</td><td style="color:green;">' + d1[i].Time+ '</td><td style="color:green;">' + d2[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
+                  }
+
+
+                }
+                //sprehod čed daljšega, od zadnjega krajšega naprej do zadnjega v daljšem
+                for(var j=velikostManjse; j<=(velikostManjse+razlikaDolzine)-1; j++){
+                  $('#head_to_head').append('<tr><td>'+d1[j].Lap+'</td><td style="color:green;">' + d1[j].Time+ '</td><td>' + '- - -'+ '</td><td>'+'- -'+'</td></tr>')
+                }
 
                }
-              
-               
-                
-
-                
-                
-                
-                   
-                    
-
-                
-                },error: function(e) {
+                 },error: function(e) {
                     console.log(e.message);
               }
           })
 
             //fastests laps all 
-            
+
+
         )
 
+        $('#driver1').on('change', function(){
+              driver1 = $('#driver1').val();
+              driver2 = $('#driver2').val();
+              season = $('#select_season').val();
+              race = $('#select_race').val();
 
+              /*
+              console.log(driver1);
+              console.log(driver2);
+              console.log(season);
+              console.log(race);
+              */
+
+              $.ajax({
+              type: 'GET',
+              url:'head_to_head_select_driver.php',
+              data: {driver1: driver1, driver2: driver2, season: season, race: race},
+              contentType: "application/json",
+              dataType: 'json',
+              success: function(json) {
+                data2 = json['laptimes1'];
+                data3 = json['laptimes2'];
+
+                console.log(data2.length);
+                console.log(data3.length);
+                
+                //console.log(d1.length);
+                //console.log(d2.length);
+                $('#head_to_head').empty();
+                var razlikaDolzine;
+                 var plusMinus;
+                 var velikostManjse;
+
+                //če je prvi array krajši od drugega
+                 if(data2.length > data3.length){
+                  velikostManjse = data3.length;
+                  razlikaDolzine = data2.length - data3.length;
+                  //sprehod čez krajšega
+                  for(var i=0; i<data3.length; i++){
+                    if(Number(data2[i].Milliseconds) < Number(data3[i].Milliseconds)){
+                      plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds) / 1000;
+                      console.log(data2[0].Milliseconds < data3[0].Milliseconds);
+                      console.log(data2[0].Milliseconds + " " +  data3[0].Milliseconds);
+                      $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:green;">' + data2[i].Time+ '</td><td style="color:red;">' + data3[i].Time+ '</td><td style="color:green;">'+plusMinus+'</td></tr>')
+                    }
+                    if(Number(data2[i].Milliseconds) > Number(data3[i].Milliseconds)){
+                        plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds)/1000;
+                        $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:red;">' + data2[i].Time+ '</td><td style="color:green;">' + data3[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
+                    }
+                    if(Number(data2[i].Milliseconds) == Number(data3[i].Milliseconds)){
+                        plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds) / 1000;
+                        $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:green;">' + data2[i].Time+ '</td><td style="color:green;">' + data3[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
+                    }
+
+
+                  }
+                  //sprehod čed daljšega, od zadnjega krajšega naprej do zadnjega v daljšem
+                  for(var j=velikostManjse; j<=(velikostManjse+razlikaDolzine)-1; j++){
+                    $('#head_to_head').append('<tr><td>'+data2[j].Lap+'</td><td style="color:green;">' + data2[j].Time+ '</td><td>' + '- - -'+ '</td><td>'+'- -'+'</td></tr>')
+                  }
+
+                 }else if(data2.length < data3.length){
+                      velikostManjse = data2.length;
+                      razlikaDolzine = data3.length - data2.length;
+                      //sprehod čez krajšega
+                      for(var i=0; i<data2.length; i++){
+                        if(Number(data2[i].Milliseconds) < Number(data3[i].Milliseconds)){
+                          plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds) / 1000;
+                          console.log(data2[0].Milliseconds < data3[0].Milliseconds);
+                          console.log(data2[0].Milliseconds + " " +  data3[0].Milliseconds);
+                          $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:green;">' + data2[i].Time+ '</td><td style="color:red;">' + data3[i].Time+ '</td><td style="color:green;">'+plusMinus+'</td></tr>')
+                        }
+                        if(Number(data2[i].Milliseconds) > Number(data3[i].Milliseconds)){
+                            plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds)/1000;
+                            $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:red;">' + data2[i].Time+ '</td><td style="color:green;">' + data3[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
+                        }
+                        if(Number(data2[i].Milliseconds) == Number(data3[i].Milliseconds)){
+                            plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds) / 1000;
+                            $('#head_to_head').append('<tr><td>'+data[i].Lap+'</td><td style="color:green;">' + data2[i].Time+ '</td><td style="color:green;">' + data3[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
+                        }
+
+
+                      }
+                      //sprehod čed daljšega, od zadnjega krajšega naprej do zadnjega v daljšem
+                      for(var j=velikostManjse; j<=(velikostManjse+razlikaDolzine)-1; j++){
+                        $('#head_to_head').append('<tr><td>'+data3[j].Lap+'</td><td>' +'- - -'+ '</td><td style="color:green;">' + data3[j].Time+ '</td><td>'+'- -'+'</td></tr>')
+                      }
+
+                 }else{
+                      velikostManjse = data2.length;
+                      razlikaDolzine = data2.length - data3.length;
+                      //sprehod čez krajšega
+                      for(var i=0; i<data2.length; i++){
+                        if(Number(data2[i].Milliseconds) < Number(data3[i].Milliseconds)){
+                          plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds) / 1000;
+                          console.log(data2[0].Milliseconds < data3[0].Milliseconds);
+                          console.log(data2[0].Milliseconds + " " +  data3[0].Milliseconds);
+                          $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:green;">' + data2[i].Time+ '</td><td style="color:red;">' + data3[i].Time+ '</td><td style="color:green;">'+plusMinus+'</td></tr>')
+                        }
+                        if(Number(data2[i].Milliseconds) > Number(data3[i].Milliseconds)){
+                            plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds)/1000;
+                            $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:red;">' + data2[i].Time+ '</td><td style="color:green;">' + data3[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
+                        }
+                        if(Number(data2[i].Milliseconds) == Number(data3[i].Milliseconds)){
+                            plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds) / 1000;
+                            $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:green;">' + data2[i].Time+ '</td><td style="color:green;">' + data3[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
+                        }
+
+
+                      }
+                      //sprehod čed daljšega, od zadnjega krajšega naprej do zadnjega v daljšem
+                      for(var j=velikostManjse; j<=(velikostManjse+razlikaDolzine)-1; j++){
+                        $('#head_to_head').append('<tr><td>'+data2[j].Lap+'</td><td style="color:green;">' + data2[j].Time+ '</td><td>' + '- - -'+ '</td><td>'+'- -'+'</td></tr>')
+                      }
+
+                 
+
+                 }
+
+              }
+              });
+
+
+
+
+            });
+
+            $('#driver2').on('change', function(){
+              driver1 = $('driver1').val();
+              driver2 = $('driver2').val();
+              //console.log("driver2");
+            });
+            
 
 
         
@@ -775,6 +992,7 @@
 
           race = $('#select_race').val();
           season = $("#select_season").val();
+
                    
           $('#table_fastest_laps').empty();
           $('#fastest_laps_chart').empty();
@@ -991,9 +1209,9 @@
                 data1 = json['drivers'];
                 data2 = json['laptimes1'];
                 data3 = json['laptimes2'];
-                console.log(data2.length);
-                console.log(data3.length);
-                console.log(data2[0].Milliseconds);
+                console.log(data2.length + " " + data2[0].Milliseconds);
+                console.log(data3.length + " " + data3[0].Milliseconds);
+                
                 
                 $('#driver1').empty();
                 $('#driver2').empty();
@@ -1031,13 +1249,17 @@
                 razlikaDolzine = data2.length - data3.length;
                 //sprehod čez krajšega
                 for(var i=0; i<data3.length; i++){
-                  if(data2[i].Milliseconds < data3[i].Milliseconds){
+                  if(Number(data2[i].Milliseconds) < Number(data3[i].Milliseconds)){
                     plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds) / 1000;
+                    console.log(data2[0].Milliseconds < data3[0].Milliseconds);
+                    console.log(data2[0].Milliseconds + " " +  data3[0].Milliseconds);
                     $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:green;">' + data2[i].Time+ '</td><td style="color:red;">' + data3[i].Time+ '</td><td style="color:green;">'+plusMinus+'</td></tr>')
-                  }else if(data2[i].Milliseconds > data3[i].Milliseconds){
+                  }
+                  if(Number(data2[i].Milliseconds) > Number(data3[i].Milliseconds)){
                       plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds)/1000;
                       $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:red;">' + data2[i].Time+ '</td><td style="color:green;">' + data3[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
-                  }else{
+                  }
+                  if(Number(data2[i].Milliseconds) == Number(data3[i].Milliseconds)){
                       plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds) / 1000;
                       $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:green;">' + data2[i].Time+ '</td><td style="color:green;">' + data3[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
                   }
@@ -1050,9 +1272,58 @@
                 }
 
                }else if(data2.length < data3.length){
-                razlikaDolzine = data3.length - data2.length;
+                velikostManjse = data2.length;
+                      razlikaDolzine = data3.length - data2.length;
+                      //sprehod čez krajšega
+                      for(var i=0; i<data2.length; i++){
+                        if(Number(data2[i].Milliseconds) < Number(data3[i].Milliseconds)){
+                          plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds) / 1000;
+                          console.log(data2[0].Milliseconds < data3[0].Milliseconds);
+                          console.log(data2[0].Milliseconds + " " +  data3[0].Milliseconds);
+                          $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:green;">' + data2[i].Time+ '</td><td style="color:red;">' + data3[i].Time+ '</td><td style="color:green;">'+plusMinus+'</td></tr>')
+                        }
+                        if(Number(data2[i].Milliseconds) > Number(data3[i].Milliseconds)){
+                            plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds)/1000;
+                            $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:red;">' + data2[i].Time+ '</td><td style="color:green;">' + data3[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
+                        }
+                        if(Number(data2[i].Milliseconds) == Number(data3[i].Milliseconds)){
+                            plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds) / 1000;
+                            $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:green;">' + data2[i].Time+ '</td><td style="color:green;">' + data3[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
+                        }
+
+
+                      }
+                      //sprehod čed daljšega, od zadnjega krajšega naprej do zadnjega v daljšem
+                      for(var j=velikostManjse; j<=(velikostManjse+razlikaDolzine)-1; j++){
+                        $('#head_to_head').append('<tr><td>'+data3[j].Lap+'</td><td>' +'- - -'+ '</td><td style="color:green;">' + data3[j].Time+ '</td><td>'+'- -'+'</td></tr>');
+                      }
 
                }else{
+                  velikostManjse = data2.length;
+                      razlikaDolzine = data2.length - data3.length;
+                      //sprehod čez krajšega
+                      for(var i=0; i<data2.length; i++){
+                        if(Number(data2[i].Milliseconds) < Number(data3[i].Milliseconds)){
+                          plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds) / 1000;
+                          console.log(data2[0].Milliseconds < data3[0].Milliseconds);
+                          console.log(data2[0].Milliseconds + " " +  data3[0].Milliseconds);
+                          $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:green;">' + data2[i].Time+ '</td><td style="color:red;">' + data3[i].Time+ '</td><td style="color:green;">'+plusMinus+'</td></tr>')
+                        }
+                        if(Number(data2[i].Milliseconds) > Number(data3[i].Milliseconds)){
+                            plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds)/1000;
+                            $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:red;">' + data2[i].Time+ '</td><td style="color:green;">' + data3[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
+                        }
+                        if(Number(data2[i].Milliseconds) == Number(data3[i].Milliseconds)){
+                            plusMinus = (data2[i].Milliseconds - data3[i].Milliseconds) / 1000;
+                            $('#head_to_head').append('<tr><td>'+data2[i].Lap+'</td><td style="color:green;">' + data2[i].Time+ '</td><td style="color:green;">' + data3[i].Time+ '</td><td style="color:red;">'+plusMinus+'</td></tr>')
+                        }
+
+
+                      }
+                      //sprehod čed daljšega, od zadnjega krajšega naprej do zadnjega v daljšem
+                      for(var j=velikostManjse; j<=(velikostManjse+razlikaDolzine)-1; j++){
+                        $('#head_to_head').append('<tr><td>'+data2[j].Lap+'</td><td style="color:green;">' + data2[j].Time+ '</td><td>' + '- - -'+ '</td><td>'+'- -'+'</td></tr>')
+                      }
 
                }
                 
