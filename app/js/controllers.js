@@ -382,6 +382,77 @@ stats.controller('constructorResultsController', ['$scope', '$routeParams' ,'erg
 }]);
 
 
+stats.controller('nbaNews', function ($scope, $http) {
+    $scope.test="dela";
+    
+	  $scope.Novice=[];
+		$http({method: 'GET', url: 'http://api.espn.com/v1/now/popular?apikey=u7ypns6uch5j8pjrep9jq54y'}).success(function(data)
+		{
+		$scope.posts = data; // response data 
+		for(var i=0; i<10; i++){
+		  var naslov= data.feed[i].headline;
+		  var objavljenoOb=data.feed[i].lastModified;
+		  var datum=objavljenoOb.substring(0, 10);
+		  var ura=objavljenoOb.substring(12, 19);
+		  var slika=data.feed[i].images[0].url;
+		  var opis=data.feed[i].description;
+		  if(opis.length>100){
+		     opis=opis.substring(0,100)+"...";
+		  }
+		  //var povezava=data.feed[i].links.web.href;
+		 // document.write(data.feed[i].links);
+
+		  var povezava= data.feed[i].links.web.href;
+		  
+		 if(naslov.length>38){
+		    naslov=naslov.substring(0,38)+" ...";
+		 }
+
+		 
+
+		  var novica={
+		      title : naslov,
+			  date : datum,
+			  clock : ura,
+			  picture :slika,
+			  //link=povezava,
+			  opis: opis
+			 	  
+			  
+		  };
+		  $scope.Novice.push(novica);
+		  
+		  
+		}
+		
+		});
+   
+});
+
+
+
+
+stats.controller('nbaTeams', function ($scope, $http) {
+    $scope.test="dela";
+    		   $scope.Ekipe=[];
+		$http({method: 'GET', url: 'http://api.espn.com/v1/sports/basketball/nba/teams?apikey=u7ypns6uch5j8pjrep9jq54y'}).success(function(data)
+		{
+		$scope.posts = data; // response data 
+		for(var i=0; i<30; i++){
+	     	//document.write(data.sports[0].leagues[0].teams[i].name+"<br>");		
+		    var ekipa={
+			  id : data.sports[0].leagues[0].teams[i].id,
+		      name : data.sports[0].leagues[0].teams[i].name,
+			  location : data.sports[0].leagues[0].teams[i].location,
+			  abbreviation: data.sports[0].leagues[0].teams[i].abbreviation,
+			  leauges: data.sports[0].leagues[0].name
+		  };
+		 $scope.Ekipe.push(ekipa);
+		}
+
+		
+		});
+});
 
 
 stats.config(['$routeProvider', function($routeProvider) {
@@ -393,6 +464,9 @@ stats.config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/races/:round', {templateUrl: 'partials/results.html', controller: 'racesQualyResultsController' });
   $routeProvider.when('/teams/:id', {templateUrl: 'partials/team.html', controller: 'constructorResultsController'});
 $routeProvider.when('/lap-chart', {templateUrl: 'partials/times.html', controller: ''});
+  $routeProvider.when('/nbaNews', {templateUrl: 'partials/News.html', controller: 'nbaNews'});
+  $routeProvider.when('/nbaTeams', {templateUrl: 'partials/Teams.html', controller: 'nbaTeams'});
+
   $routeProvider.otherwise({redirectTo: '/f1.html'});
 }]);
 
