@@ -63,20 +63,20 @@
                     <!-- E-mail address -->
                     <div class="form-group has-feedback">
                         <label class="control-label" for="email">E-mail address</label>
-                        <input type="email" id="email" class="form-control" name="email" autofocus>
+                        <input ng-model="user.email" type="email" id="email" class="form-control" name="email" autofocus>
                         <span class="form-control-feedback glyphicon" style="top:30px"></span>
                     </div>
                     <!-- Password -->
                     <div class="form-group has-feedback">
                         <label class="control-label" for="password">Password</label>
-                        <input type="password" id="password" class="form-control" name="password">
+                        <input ng-model="user.password" type="password" id="password" class="form-control" name="password">
                         <span class="form-control-feedback glyphicon" style="top:30px"></span>
                     </div>
                     <!-- Remember me -->
                     <label class="checkbox">
                         <input type="checkbox" value="remember-me"> Remember me
                     </label>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                    <button ng-click="auth.$login('password', {email: user.email, password: user.password})" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
                 </form>
 
                 <br>

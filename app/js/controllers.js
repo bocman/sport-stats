@@ -10,6 +10,18 @@ stats.controller("LoginController", ["$scope", "$firebase", "$firebaseSimpleLogi
             var ref = new Firebase("https://glowing-fire-8759.firebaseio.com/");
             $scope.auth = $firebaseSimpleLogin(ref);
 
+            // function to register user
+            $scope.signUp = function(userEmail, userPassword) {
+                $scope.auth.$createUser(userEmail, userPassword, function(error, user) {                   
+                    if (!error) {
+                        console.log("USER CREATED");
+                    } 
+                    else {
+                        console.log("ERROR");
+                    }
+                });
+            }
+
             var auth = new FirebaseSimpleLogin(ref, function(error, user) {
                 if (error) {
                     // an error occurred while attempting login
@@ -17,7 +29,6 @@ stats.controller("LoginController", ["$scope", "$firebase", "$firebaseSimpleLogi
                 } 
                 else if (user) {
                     // user authenticated with Firebase
-
                     var currentPath = window.location.pathname.split('/').pop();
 
                     if (currentPath === 'sign-in.html' || currentPath === 'register.html') {
@@ -44,9 +55,9 @@ stats.controller("LoginController", ["$scope", "$firebase", "$firebaseSimpleLogi
                                 } 
 
                                 date = dd+'/'+mm+'/'+yyyy;
-
+                                console.log("DISPLAY NAME = " + user.displayName);
                                 // write new user name and joined date to database
-                                userRef.child('name').set(user.displayName);
+                                userRef.child('name').set(user.displayName === undefined ? user.email : user.displayName);
                                 userRef.child('joined').set(date);
                             } else {
                                 // the user is already registered
